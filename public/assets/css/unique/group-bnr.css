@@ -1,0 +1,78 @@
+@charset "utf-8";
+@import url("https://use.typekit.net/yny6oav.css");
+@import url("/assets/css/base.css");
+
+
+html {
+	width: 100%;
+	height: 100%;
+	font-size: 62.5%;
+	overflow: auto;
+}
+body {
+	width: 100%;
+	height: 100%;
+	font-size: 1.6rem;
+	line-height: 2;
+	color: var(--Rinnai-Gray-1);
+	font-family: "neue-haas-grotesk-display", Arial, "A-OTF ゴシックMB101 Pro L", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Meiryo, sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+a {
+	color: #3e3a39;
+	text-decoration: none;
+}
+
+/* group-bnr-area */
+#group-bnr-area {
+	border-top: solid 1px #fff;
+	background: #f2f4f5;
+	padding: 30px 48px;
+	line-height: 1.5;
+}
+#group-bnr.bnr_item {
+	max-width: 655px;
+	background-color: #fff;
+	border: solid 1px #c0c6cf;
+}
+#group-bnr.bnr_item a {
+	border: solid 2px #fff;
+	padding: 35px 40px;
+	display: flex;
+	align-items: center;
+	transition: .5s;
+}
+#group-bnr.bnr_item a:hover {
+	border: solid 2px #c0c6cf;
+	opacity: 1;
+}
+#group-bnr.bnr_item .bnr_item_logo img {
+	max-width: 100px;
+	margin-right: 40px;
+}
+#group-bnr.bnr_item .bnr_item_text {
+	font-size: 1.4rem;
+}
+@media (max-width: 767px) {
+	#group-bnr-area {
+		padding: 20px;
+	}
+	#group-bnr.bnr_item {
+		max-width: initial;
+		max-width: auto;
+	}
+	#group-bnr.bnr_item a {
+		padding: 40px 35px;
+		display: block;
+		align-items: center;
+	}
+	#group-bnr.bnr_item .bnr_item_logo {
+		text-align: center;
+	}
+	#group-bnr.bnr_item .bnr_item_logo img {
+		margin: 0 0 30px 0;
+	}
+}

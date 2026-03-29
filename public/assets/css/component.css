@@ -1,0 +1,29 @@
+img {
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+	border: 0;
+	max-width: 100%;
+	height: auto;
+}
+.taC {
+	text-align: center;
+}
+@media (max-width: 896px) and (orientation: landscape), (max-width: 767px) and (orientation: portrait) {
+	.tbl-sp tr {
+		border-top: 1px solid #c0c6cf;
+	}
+	.tbl-sp tr:last-child {
+		border-bottom: 1px solid #c0c6cf;
+	}
+	.tbl-sp tr th,
+	.tbl-sp tr td {
+		border: none;
+		display: block;
+		min-width: 100%;
+	}
+	.tbl-sp tr th:first-child,
+	.tbl-sp tr td:first-child {
+		border-top: none;
+	}
+}
