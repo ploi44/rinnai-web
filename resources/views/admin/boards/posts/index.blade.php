@@ -14,20 +14,20 @@
                         <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </div>
                 </div>
-                
-                <select x-show="categories.length > 0" x-model="categoryId" @change="page=1; fetchPosts()" class="ml-3 block w-32 pl-3 pr-10 py-2 text-sm border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg text-gray-600">
+
+                {{--<select x-show="categories.length > 0" x-model="categoryId" @change="page=1; fetchPosts()" class="ml-3 block w-32 pl-3 pr-10 py-2 text-sm border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg text-gray-600">
                     <option value="">전체 카테고리</option>
                     <template x-for="cat in categories" :key="cat.id">
                         <option :value="cat.id" x-text="cat.name"></option>
                     </template>
-                </select>
+                </select>--}}
 
                 <button @click="page=1; fetchPosts()" class="ml-3 inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
                     검색
                 </button>
-                <button @click="manageCategoriesModal = true; fetchCategories()" class="ml-3 inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-indigo-50 hover:bg-indigo-100 focus:outline-none transition-colors">
+                {{--<button @click="manageCategoriesModal = true; fetchCategories()" class="ml-3 inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-indigo-50 hover:bg-indigo-100 focus:outline-none transition-colors">
                     카테고리 관리
-                </button>
+                </button>--}}
             </div>
             <a href="{{ route('admin.posts.create', ['slug' => $board->slug]) }}" class="w-full sm:w-auto inline-flex justify-center items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
@@ -41,7 +41,7 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">카테고리</th>
+                        {{--<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">카테고리</th>--}}
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">제목</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">작성자</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">작성일</th>
@@ -52,10 +52,10 @@
                     <template x-for="post in posts" :key="post.id">
                         <tr class="hover:bg-slate-50 transition-colors">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" x-text="post.id"></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{--<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 <span x-show="post.category" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800" x-text="post.category ? post.category.name : ''"></span>
                                 <span x-show="!post.category" class="text-xs text-gray-400">-</span>
-                            </td>
+                            </td>--}}
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900" x-text="post.title"></div>
                             </td>
@@ -81,8 +81,17 @@
                 총 <span class="font-medium text-gray-900" x-text="total"></span>개 중 페이지 <span class="font-medium text-gray-900" x-text="page"></span>/<span class="font-medium text-gray-900" x-text="lastPage"></span>
             </div>
             <div class="flex space-x-1">
-                <button @click="if(page > 1) { page--; fetchPosts(); }" :disabled="page <= 1" class="px-3 py-1 border border-gray-300 rounded-md bg-white text-gray-500 hover:bg-gray-50 disabled:opacity-50">이전</button>
-                <button @click="if(page < lastPage) { page++; fetchPosts(); }" :disabled="page >= lastPage" class="px-3 py-1 border border-gray-300 rounded-md bg-white text-gray-500 hover:bg-gray-50 disabled:opacity-50">다음</button>
+                <button @click="goToPage(1)" :disabled="page <= 1" class="px-3 py-1 border border-gray-300 rounded-md bg-white text-gray-500 hover:bg-gray-50 disabled:opacity-50" title="처음">&laquo;</button>
+                <button @click="goToPage(page - 1)" :disabled="page <= 1" class="px-3 py-1 border border-gray-300 rounded-md bg-white text-gray-500 hover:bg-gray-50 disabled:opacity-50">이전</button>
+
+                <template x-for="p in paginationPages" :key="p">
+                    <button @click="goToPage(p)"
+                            :class="{'bg-blue-600 text-white border-blue-600': p === page, 'bg-white text-gray-500 border-gray-300 hover:bg-gray-50': p !== page}"
+                            class="px-3 py-1 border rounded-md" x-text="p"></button>
+                </template>
+
+                <button @click="goToPage(page + 1)" :disabled="page >= lastPage" class="px-3 py-1 border border-gray-300 rounded-md bg-white text-gray-500 hover:bg-gray-50 disabled:opacity-50">다음</button>
+                <button @click="goToPage(lastPage)" :disabled="page >= lastPage" class="px-3 py-1 border border-gray-300 rounded-md bg-white text-gray-500 hover:bg-gray-50 disabled:opacity-50" title="마지막">&raquo;</button>
             </div>
         </div>
 
@@ -94,13 +103,13 @@
                 <div x-show="manageCategoriesModal" x-transition class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">카테고리 관리</h3>
-                        
+
                         <!-- Add Category -->
                         <div class="flex mb-6">
                             <input type="text" x-model="newCategoryName" @keydown.enter="addCategory()" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="새 카테고리 이름">
                             <button @click="addCategory()" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">추가</button>
                         </div>
-                        
+
                         <!-- Category List -->
                         <ul class="divide-y divide-gray-200 border-t border-b border-gray-200 max-h-60 overflow-y-auto">
                             <template x-for="cat in categories" :key="cat.id">
@@ -131,13 +140,39 @@
                 page: 1,
                 lastPage: 1,
                 total: 0,
-                
+
                 manageCategoriesModal: false,
                 newCategoryName: '',
 
                 init() {
                     this.fetchCategories();
                     this.fetchPosts();
+                },
+
+                get paginationPages() {
+                    const pages = [];
+                    let start = Math.max(1, this.page - 4);
+                    let end = Math.min(this.lastPage, this.page + 4);
+
+                    if (this.lastPage > 9) {
+                        if (this.page <= 5) {
+                            end = 9;
+                        } else if (this.page >= this.lastPage - 4) {
+                            start = this.lastPage - 8;
+                        }
+                    }
+
+                    for (let i = start; i <= end; i++) {
+                        pages.push(i);
+                    }
+                    return pages;
+                },
+
+                goToPage(p) {
+                    if (p >= 1 && p <= this.lastPage && p !== this.page) {
+                        this.page = p;
+                        this.fetchPosts();
+                    }
                 },
 
                 fetchPosts() {
