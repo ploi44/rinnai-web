@@ -102,78 +102,16 @@
                     </p>
                     <div class="padding20"></div>
                     <div class="l-row">
+                        @foreach($awards as $award)
                         <div class="l-col-3 l-col-sm-12">
                             <figure>
-                                <img src="../assets/images/corp/company/comp_img_awards_1.png" alt="브랜드 파워 1위 골드브랜드">
+                                <img src="{{ $award->image_path }}" alt="{{ $award->title }}">
                                 <div class="col_bot_txt_sm">
-                                    업계최다 26년 연속 한국 산업의 브랜드 파워 1위 골드브랜드 획득
+                                    {{ $award->title }}
                                 </div>
                             </figure>
                         </div>
-                        <div class="l-col-3 l-col-sm-12">
-                            <figure>
-                                <img src="../assets/images/corp/company/comp_img_awards_2.png" alt="한국에서 가장 존경받는 기업">
-                                <div class="col_bot_txt_sm">
-                                    한국에서 가장 존경받는 기업 17회 1위
-                                </div>
-                            </figure>
-                        </div>
-                        <div class="l-col-3 l-col-sm-12">
-                            <figure>
-                                <img src="../assets/images/corp/company/comp_img_awards_3.png" alt="한국서비스품질지수">
-                                <div class="col_bot_txt_sm">
-                                    한국서비스품질지수 14회 1위
-                                </div>
-                            </figure>
-                        </div>
-                        <div class="l-col-3 l-col-sm-12">
-                            <figure>
-                                <img src="../assets/images/corp/company/comp_img_awards_4.png" alt="프리미엄 브랜드지수">
-                                <div class="col_bot_txt_sm">
-                                    프리미엄 브랜드지수 9년 연속 1위
-                                </div>
-                            </figure>
-                        </div>
-                        <div class="l-col-3 l-col-sm-12">
-                            <figure>
-                                <img src="../assets/images/corp/company/comp_img_awards_5.png" alt="고객이 가장 추천하는 기업">
-                                <div class="col_bot_txt_sm">
-                                    고객이 가장 추천하는 기업 15년 연속 1위
-                                </div>
-                            </figure>
-                        </div>
-                        <div class="l-col-3 l-col-sm-12">
-                            <figure>
-                                <img src="../assets/images/corp/company/comp_img_awards_6.png" alt="업계최다 품질경쟁력 우수기업">
-                                <div class="col_bot_txt_sm">
-                                    업계최다 품질경쟁력 우수기업 20회 1위
-                                </div>
-                            </figure>
-                        </div>
-                        <div class="l-col-3 l-col-sm-12">
-                            <figure>
-                                <img src="../assets/images/corp/company/comp_img_awards_7.png" alt="우수디자인(GD)">
-                                <div class="col_bot_txt_sm">
-                                    우수디자인(GD) 24회 선정
-                                </div>
-                            </figure>
-                        </div>
-                        <div class="l-col-3 l-col-sm-12">
-                            <figure>
-                                <img src="../assets/images/corp/company/comp_img_awards_8.png" alt="핀업 디자인 어워드">
-                                <div class="col_bot_txt_sm">
-                                    핀업 디자인 어워드 17회 선정
-                                </div>
-                            </figure>
-                        </div>
-                        <div class="l-col-3 l-col-sm-12">
-                            <figure>
-                                <img src="../assets/images/corp/company/comp_img_awards_9.png" alt="레드닷 디자인 어워드">
-                                <div class="col_bot_txt_sm">
-                                    레드닷 디자인 어워드 선정
-                                </div>
-                            </figure>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </section>

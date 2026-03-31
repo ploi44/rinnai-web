@@ -40,7 +40,7 @@
                     @if($board->type === 'album')
                     <!-- Thumbnail for Album Board -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">대표 썸네일 <span class="text-rose-500">*</span></label>
+                        <label class="block text-sm font-medium text-gray-700">대표 썸네일 <span class="text-gray-400 text-xs font-normal ml-1">(선택)</span></label>
                         <div class="mt-2 flex items-center space-x-4">
                             <div class="flex-shrink-0 h-32 w-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center overflow-hidden bg-gray-50 relative">
                                 <template x-if="form.thumbnail">
@@ -120,6 +120,13 @@
                     <input type="hidden" name="content" x-model="form.content">
                     @endif
 
+                    @if(isset($post))
+                    <div>
+                        <label for="created_at" class="block text-sm font-medium text-gray-700 mb-2">등록일</label>
+                        <input type="datetime-local" x-model="form.created_at" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer" onkeydown="return false" onclick="this.showPicker()" step="1">
+                    </div>
+                    @endif
+
                     <!-- Form Actions -->
                     <div class="pt-5 border-t border-gray-200 mt-8 flex justify-end space-x-3">
                         <a href="{{ route('admin.posts.index', ['slug' => $board->slug]) }}" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
@@ -146,6 +153,7 @@
     </style>
 
     <script>
+        let editorRaw = null;
         // Custom Upload Adapter for CKEditor 5
         class MyUploadAdapter {
             constructor(loader) {
@@ -191,17 +199,18 @@
                 categories: [],
                 saving: false,
                 fetchingYoutube: false,
-                editorInstance: null,
 
                 form: {
                     board_id: {{ $board->id }},
                     category_id: {!! isset($post) && $post->category_id ? $post->category_id : '""' !!},
+                    created_at: "{{ $board->created_at }}",
                     title: {!! isset($post) ? json_encode($post->title) : '""' !!},
                     content: {!! isset($post) ? json_encode($post->content) : '""' !!},
                     thumbnail: {!! isset($post) && $post->thumbnail ? json_encode($post->thumbnail) : 'null' !!},
                     attachments: {!! isset($post) && $post->attachments ? json_encode($post->attachments) : '[]' !!},
                     youtube_url: {!! isset($post) && $post->attachments && is_array($post->attachments) && isset($post->attachments['youtube_url']) ? json_encode($post->attachments['youtube_url']) : '""' !!},
-                    youtube_tag: {!! isset($post) && $post->attachments && is_array($post->attachments) && isset($post->attachments['youtube_tag']) ? json_encode($post->attachments['youtube_tag']) : '""' !!}
+                    youtube_tag: {!! isset($post) && $post->attachments && is_array($post->attachments) && isset($post->attachments['youtube_tag']) ? json_encode($post->attachments['youtube_tag']) : '""' !!},
+                    created_at: "{!! isset($post) ? $post->created_at : Date("Y-m-d H:i:s") !!}"
                 },
 
                 init() {
@@ -214,9 +223,9 @@
                                 extraPlugins: [MyCustomUploadAdapterPlugin],
                             })
                             .then(editor => {
-                                this.editorInstance = editor;
+                                editorRaw = editor;
                                 if (this.form.content) {
-                                    editor.setData(this.form.content);
+                                    editorRaw.setData(this.form.content);
                                 }
                             })
                             .catch(error => {
@@ -300,8 +309,8 @@
                         return;
                     }
 
-                    if (this.editorInstance) {
-                        this.form.content = this.editorInstance.getData();
+                    if (editorRaw) {
+                        this.form.content = editorRaw.getData();
                     }
 
                     if (!this.form.title.trim()) {
@@ -316,10 +325,14 @@
                     }
                     @endif
 
-                    @if($board->type === 'album')
-                    if (!this.form.thumbnail) {
-                        alert('앨범형 게시판은 썸네일 등록이 필수입니다.');
-                        return;
+                    @if($board->type === 'album' || $board->type === 'general')
+                    if (!this.form.thumbnail && this.form.content) {
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = this.form.content;
+                        const firstImage = tempDiv.querySelector('img');
+                        if (firstImage) {
+                            this.form.thumbnail = firstImage.getAttribute('src');
+                        }
                     }
                     @endif
 
@@ -339,6 +352,10 @@
 
                     const url = this.isEdit ? '/api/admin/posts/update' : '/api/admin/posts/store';
                     const payload = { ...this.form };
+
+                    if (payload.category_id === "") {
+                        payload.category_id = null;
+                    }
 
                     if (this.isEdit) {
                         payload.id = this.postId;

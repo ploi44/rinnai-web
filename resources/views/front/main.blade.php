@@ -11,20 +11,20 @@
         <div id="top">
 
             <!-- Main Visual -->
-            <div class="mainvisual" x-data="postMainSlide()" x-init="fetchMainSlide()">
+            <div class="mainvisual">
                 <div class="pc swiper-container swiper-mv">
                     <div class="swiper-wrapper">
-                        <template x-for="slide in slideItems" :key="slide.id">
-                            <div class="swiper-slide"><a href="#none"><img :src="slide.pc_image" alt="Brand"></a></div>
-                        </template>
+                        @foreach($mainSlides as $slide)
+                            <div class="swiper-slide"><a href="#none"><img src="{{ $slide->pc_image }}" alt="Brand"></a></div>
+                        @endforeach
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
                 <div class="sp swiper-container swiper-mv">
                     <div class="swiper-wrapper">
-                        <template x-for="slide in slideItems" :key="slide.id">
-                            <div class="swiper-slide"><a href="#none"><img :src="slide.mobile_image" alt="Brand"></a></div>
-                        </template>
+                        @foreach($mainSlides as $slide)
+                            <div class="swiper-slide"><a href="#none"><img src="{{ $slide->mobile_image }}" alt="Brand"></a></div>
+                        @endforeach
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
@@ -35,17 +35,17 @@
             <div id="mainContent">
 
                 <!-- 주요안내 -->
-                <section class="important-news" x-data="postNotice()" x-init="fetchNotice()">
+                <section class="important-news">
                     <h2 class="border-red"><span class="cmn-icon icon-svg icon-exclamation"></span>주요안내</h2>
                     <ul class="important-news-content">
-                        <template x-for="notice in notices" :key="notice.id">
+                        @foreach($notices as $notice)
                             <li>
-                                <a :href="notice.link_url" target="_blank">
-                                    <p class="important-news-ttl"><span class="cmn-icon icon-arrow -r"></span><span x-text="notice.title"></span></p>
-                                    <p class="important-news-txt" x-text="notice.content"></p>
+                                <a href="{{ $notice->link_url }}" target="_blank">
+                                    <p class="important-news-ttl"><span class="cmn-icon icon-arrow -r"></span>{{ $notice->title }}</span></p>
+                                    <p class="important-news-txt">{{ $notice->content }}</p>
                                 </a>
                             </li>
-                        </template>
+                        @endforeach
                     </ul>
                 </section>
                 <!-- /주요안내 -->
@@ -79,35 +79,19 @@
                     <h2 class="border-red">린나이 소식</h2>
 
                     <ul class="l-row news -pic">
+                        @foreach($posts as $post)
                         <li class="l-col-3 l-col-tb-6 l-col-sm-12">
-                            <a href="/dummy.pdf" target="_blank">
-                                <figure><img src="../assets/images/main/ex_img_main_nw_1.jpg" alt="린나이소식">
+                            <a href="/board/{{ $post->board->slug }}/{{ $post->id }}" target="_blank">
+                                <figure><img src="{{ $post->thumbnail }}" alt="린나이소식">
                                 </figure>
-                                <p><span class="cmn-icon icon-arrow -r"></span><span class="lt_text">25L 전기복합오븐 출시로 라이프스타일 스펙트럼 확장</span></p>
+                                <p><span class="cmn-icon icon-arrow -r"></span><span class="lt_text">{{ $post->title }}</span></p>
                                 <!-- <p><span class="cmn-icon icon-arrow -r"></span><time datetime="Year-Month-Date">Month Date, Year</time><span class="category"><em>Category</em></span></p> -->
                                 <!-- <p class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span class="cmn-icon icon-svg icon-pdf" aria-label="Download PDF file"></span></p> -->
                             </a>
                         </li>
-                        <li class="l-col-3 l-col-tb-6 l-col-sm-12">
-                            <a href="/dummy/">
-                                <figure><img src="../assets/images/main/ex_img_main_nw_2.jpg" alt="린나이소식"></figure>
-                                <p><span class="cmn-icon icon-arrow -r"></span><span class="lt_text">상업용 튀김기 안전수칙 안내영상 제작, 배포</span></p>
-                            </a>
-                        </li>
-                        <li class="l-col-3 l-col-tb-6 l-col-sm-12">
-                            <a href="/dummy/">
-                                <figure><img src="../assets/images/main/ex_img_main_nw_3.jpg" alt="린나이소식"></figure>
-                                <p><span class="cmn-icon icon-arrow -r"></span><span class="lt_text">신제품출시!! 자동조리 기술 탑재한 프리미엄 가스레인지 선보여</span></p>
-                            </a>
-                        </li>
-                        <li class="l-col-3 l-col-tb-6 l-col-sm-12">
-                            <a href="/dummy.pdf" target="_blank">
-                                <figure><img src="../assets/images/main/ex_img_main_nw_4.jpg" alt="린나이소식"></figure>
-                                <p><span class="cmn-icon icon-arrow -r"></span><span class="lt_text">제18회 CEO서버스 나이트 행사 지원</span></p>
-                            </a>
-                        </li>
+                        @endforeach
                     </ul>
-                    <p class="btn-txt"><a class="border-btn" href="/dummy/"><span class="cmn-icon icon-arrow -r"></span>List</a></p>
+                    <p class="btn-txt"><a class="border-btn" href="/board/rinnaiNews/"><span class="cmn-icon icon-arrow -r"></span>List</a></p>
 
                 </section>
                 <!-- /린나이 소식 -->
@@ -117,71 +101,22 @@
         <!-- /Top page template -->
 
     </main>
-
     <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.data("postMainSlide", () => ({
-                slideItems: [],
-                swiperInstance: null,
-                init() {
-                    this.fetchMainSlide();
+        $(function() {
+            var swiper = new Swiper('.swiper-container.swiper-mv', {
+                spaceBetween: 0,
+                speed: 500,
+                centeredSlides: true,
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
                 },
-                fetchMainSlide() {
-                    axios.post('/api/admin/banners/list', {
-                        is_active: 1
-                    }, {
-                        headers: { 'Content-Type': 'application/json' }
-                    }).then(response => {
-                        this.slideItems = response.data.data;
-
-                        this.$nextTick(() => {
-                            this.initSwiper();
-                        });
-                    }).catch(error => {
-                        console.error('메인 슬라이드 목록을 불러오는데 실패했습니다.', error);
-                    });
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
                 },
-                initSwiper() {
-                    // 이미 인스턴스가 있다면 파괴 후 재설정 (데이터 갱신 대비)
-                    if (this.swiperInstance) {
-                        this.swiperInstance.destroy();
-                    }
-
-                    this.swiperInstance = new Swiper('.swiper-container.swiper-mv', {
-                        spaceBetween: 0,
-                        speed: 500,
-                        centeredSlides: true,
-                        loop: true,
-                        autoplay: {
-                            delay: 5000,
-                            disableOnInteraction: false,
-                        },
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable: true,
-                        },
-                    });
-                },
-            }));
-
-            Alpine.data("postNotice", () => ({
-                notices:[],
-                init() {
-                    this.fetchNotice();
-                },
-                fetchNotice() {
-                  axios.post("/api/admin/notices/list", {
-                      is_active: 1
-                  }, {
-                      headers: { 'Content-Type': 'application/json' }
-                  }).then(response => {
-                      this.notices = response.data.data;
-
-                  }).catch(error => {
-                      console.error('주요뉴스 목록을 불러오는데 실패했습니다.', error);
-                  })
-                },
-            }));
+            });
         });
     </script>
 </x-front.layout>

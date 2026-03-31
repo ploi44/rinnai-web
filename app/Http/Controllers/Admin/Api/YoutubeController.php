@@ -24,7 +24,7 @@ class YoutubeController extends Controller
             // 1. oEmbed 데이터 가져오기
             $oembedUrl = 'https://www.youtube.com/oembed?url=' . urlencode($url) . '&format=json';
             $response = Http::timeout(10)->get($oembedUrl);
-            
+
             if (!$response->successful()) {
                 return response()->json([
                     'success' => false,
@@ -40,6 +40,10 @@ class YoutubeController extends Controller
             // 2. 썸네일 이미지 서버에 다운로드 후 저장
             $localThumbnailUrl = null;
             if ($thumbnailUrl) {
+                if (preg_match('/vi\/([a-zA-Z0-9_-]{11})/', $thumbnailUrl, $matches)) {
+                    $videoId = $matches[1];
+                    $thumbnailUrl = "https://i.ytimg.com/vi/{$videoId}/maxresdefault.jpg";
+                }
                 $imageResponse = Http::timeout(15)->get($thumbnailUrl);
                 if ($imageResponse->successful()) {
                     $imageContent = $imageResponse->body();
@@ -48,10 +52,10 @@ class YoutubeController extends Controller
                         $extension = 'jpg'; // 기본 확장자
                     }
                     $filename = Str::uuid() . '.' . $extension;
-                    
+
                     // UploadController와 동일한 규칙 적용
                     $subPath = 'uploads/board/' . $boardId . '/' . $filename;
-                    
+
                     Storage::disk('public')->put($subPath, $imageContent);
                     $localThumbnailUrl = '/storage/' . $subPath;
                 }
@@ -71,7 +75,7 @@ class YoutubeController extends Controller
                         // 불필요한 공용 키워드 필터링 등 방어 로직 (선택적)
                         $tags = array_filter($tagsTemp);
                     }
-                    
+
                     // <meta name="description" content="..."> 추출 시도
                     if (preg_match('/<meta[^>]*name=["\']description["\'][^>]*content=["\']([^"\']+)["\']/i', $html, $descMatches) ||
                         preg_match('/<meta[^>]*content=["\']([^"\']+)["\'][^>]*name=["\']description["\']/i', $html, $descMatches)) {
@@ -81,7 +85,7 @@ class YoutubeController extends Controller
             } catch (\Exception $e) {
                 // HTML 태그 추출 실패 시 oembed의 author_name으로 대체 또는 무시
             }
-            
+
             // 태그가 여전히 비어있다면 oEmbed author_name 이라도 사용
             if (empty($tags) && isset($data['author_name'])) {
                 $tags[] = $data['author_name'];

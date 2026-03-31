@@ -17,6 +17,7 @@ class Post extends Model
         'thumbnail',
         'category_id',
         'attachments',
+        'created_at',
     ];
 
     protected $casts = [

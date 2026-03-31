@@ -11,7 +11,7 @@ class HistoryController extends Controller
     public function list(Request $request)
     {
         // First order by year desc, then by manual sort_order asc
-        $histories = History::orderBy('year', 'desc')
+        $histories = History::orderBy('year', 'asc')
                             ->orderBy('sort_order', 'asc')
                             ->orderBy('id', 'desc')
                             ->get();

@@ -13,21 +13,21 @@ class PostController extends Controller
     public function list(Request $request)
     {
         $request->validate(['board_id' => 'required|exists:boards,id']);
-        
-        $query = Post::with(['user', 'category'])
+
+        $query = Post::with(['user', 'category', 'board'])
             ->where('board_id', $request->board_id);
-            
+
         if ($request->filled('search')) {
             $search = $request->input('search');
             $query->where('title', 'like', "%{$search}%");
         }
-        
+
         if ($request->filled('category_id')) {
             $query->where('category_id', $request->input('category_id'));
         }
 
-        $posts = $query->orderBy('id', 'desc')->paginate(10);
-            
+        $posts = $query->orderBy('created_at', 'desc')->paginate(10);
+
         return response()->json([
             'success' => true,
             'data' => $posts
@@ -46,7 +46,7 @@ class PostController extends Controller
         ]);
 
         $validated['user_id'] = Auth::id(); // Typically the admin user's ID
-        
+
         $post = Post::create($validated);
 
         return response()->json([
@@ -68,7 +68,7 @@ class PostController extends Controller
         ]);
 
         $post = Post::findOrFail($request->input('id'));
-        $post->update($request->only(['category_id', 'title', 'content', 'thumbnail', 'attachments']));
+        $post->update($request->only(['category_id', 'title', 'content', 'thumbnail', 'attachments', 'created_at']));
 
         return response()->json([
             'success' => true,

@@ -189,8 +189,8 @@
                                         <div class="rinnaiglobalHeader_dropDownMenu_secondary">
                                             <p class="border-red">린나이 소식</p>
                                             <ul class="dropDownMenu_secondary_list">
-                                                <li class="dropDownMenu_secondary_list_item"><a href="../news/rinnaiNews.php"><span class="cmn-icon icon-arrow -r"></span>언론보도</a></li>
-                                                <li class="dropDownMenu_secondary_list_item"><a href="../news/rinnaiShorts.php"><span class="cmn-icon icon-arrow -r"></span>영상 콘텐츠</a></li>
+                                                <li class="dropDownMenu_secondary_list_item"><a href="/board/rinnaiNews"><span class="cmn-icon icon-arrow -r"></span>언론보도</a></li>
+                                                <li class="dropDownMenu_secondary_list_item"><a href="/board/rinnaiShorts"><span class="cmn-icon icon-arrow -r"></span>영상 콘텐츠</a></li>
                                             </ul>
                                         </div>
                                         <button class="menu_close" type="button" aria-label="Close the menu">
@@ -369,8 +369,8 @@
                                                 <dt class="border-gray">린나이 소개<i class="icon-plus"></i></dt>
                                                 <dd>
                                                     <ul>
-                                                        <li><a href="../corp/idea.php"><p><span class="cmn-icon icon-arrow -r"></span>경영이념</p></a></li>
-                                                        <li><a href="../corp/brand.php"><p><span class="cmn-icon icon-arrow -r"></span>브랜드 아이덴티티</p></a></li>
+                                                        <li><a href="/corp/idea"><p><span class="cmn-icon icon-arrow -r"></span>경영이념</p></a></li>
+                                                        <li><a href="/corp/brand"><p><span class="cmn-icon icon-arrow -r"></span>브랜드 아이덴티티</p></a></li>
                                                     </ul>
                                                 </dd>
                                             </dl>
@@ -378,10 +378,10 @@
                                                 <dt class="border-gray">린나이 코리아 소개<i class="icon-plus"></i></dt>
                                                 <dd>
                                                     <ul>
-                                                        <li><a href="../corp/company.php"><p><span class="cmn-icon icon-arrow -r"></span>기업정보</p></a></li>
-                                                        <li><a href="../corp/history.php"><p><span class="cmn-icon icon-arrow -r"></span>린나이코리아 연혁</p></a></li>
+                                                        <li><a href="/corp/company"><p><span class="cmn-icon icon-arrow -r"></span>기업정보</p></a></li>
+                                                        <li><a href="/corp/history"><p><span class="cmn-icon icon-arrow -r"></span>린나이코리아 연혁</p></a></li>
                                                         <!-- <li><a href="../corp/ethicalManagement.php"><p><span class="cmn-icon icon-arrow -r"></span>윤리경영</p></a></li> -->
-                                                        <li><a href="../corp/safetyManagement.php"><p><span class="cmn-icon icon-arrow -r"></span>안전보건경영</p></a></li>
+                                                        <li><a href="/corp/safetyManagement"><p><span class="cmn-icon icon-arrow -r"></span>안전보건경영</p></a></li>
                                                     </ul>
                                                 </dd>
                                             </dl>
@@ -429,8 +429,8 @@
                                                 <dt class="border-gray">린나이 소식<i class="icon-plus"></i></dt>
                                                 <dd>
                                                     <ul>
-                                                        <li><a href="../news/rinnaiNews.php"><p><span class="cmn-icon icon-arrow -r"></span>언론보도</p></a></li>
-                                                        <li><a href="../news/rinnaiShorts.php"><p><span class="cmn-icon icon-arrow -r"></span>영상 콘텐츠</p></a></li>
+                                                        <li><a href="/board/rinnaiNews"><p><span class="cmn-icon icon-arrow -r"></span>언론보도</p></a></li>
+                                                        <li><a href="/board/rinnaiShorts"><p><span class="cmn-icon icon-arrow -r"></span>영상 콘텐츠</p></a></li>
                                                     </ul>
                                                 </dd>
                                             </dl>

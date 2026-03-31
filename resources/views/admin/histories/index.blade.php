@@ -75,12 +75,13 @@
                 <div x-show="isModalOpen" x-transition.duration.300ms class="inline-block align-bottom bg-white rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full">
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <h3 class="text-lg leading-6 font-semibold text-gray-900 mb-6" id="modal-title" x-text="form.id ? '연혁 수정' : '새 연혁 등록'"></h3>
-                        
+
                         <div class="space-y-5">
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">연도 (Year) <span class="text-rose-500">*</span></label>
-                                    <input type="text" x-model="form.year" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm font-mono" placeholder="예: 2026">
+                                    <input type="text" x-model="form.year"
+                                           class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm font-mono" placeholder="예: 2026">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">상태</label>
@@ -90,7 +91,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">연혁 내용 <span class="text-rose-500">*</span></label>
                                 <textarea x-model="form.content" rows="4" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="연혁 내용을 입력하세요..."></textarea>
@@ -141,7 +142,7 @@
                 },
 
                 get sortedYears() {
-                    return Object.keys(this.groupedHistories).sort((a,b) => b - a);
+                    return Object.keys(this.groupedHistories).sort((a,b) => a - b);
                 },
 
                 fetchHistories() {
@@ -200,7 +201,7 @@
                         // Determine next sort order for this year
                         const itemsInYear = this.groupedHistories[yearInput] || [];
                         const maxOrder = itemsInYear.length > 0 ? Math.max(...itemsInYear.map(h => h.sort_order || 0)) + 1 : 1;
-                        
+
                         this.form = { id: null, year: yearInput, content: '', sort_order: maxOrder, is_active: true };
                     }
                     this.isModalOpen = true;
@@ -214,7 +215,7 @@
                     if(!this.form.year || !this.form.content) {
                         alert('연도와 내용은 필수입니다.'); return;
                     }
-                    
+
                     this.saving = true;
                     const url = this.form.id ? '/api/admin/histories/update' : '/api/admin/histories/store';
 

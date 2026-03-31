@@ -4,15 +4,32 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 
 // 메인페이지
-Route::view('/', 'front.main');
+Route::get('/', function () {
+    $mainSlides = \App\Models\Banner::where("is_active", 1)->orderBy("sort_order", "asc")->get();
+    $notices = \App\Models\Notice::where("is_active", 1)->orderBy("sort_order", "asc")->get();
+    $posts = \App\Models\Post::where("board_id", 1)->orderBy("created_at", "desc")->get();
+
+    return view('front.main', compact('mainSlides', 'notices', 'posts'));
+});
 
 // 기업개요
 Route::prefix("corp")->group(function() {
     Route::view("idea", "front.corp.idea")->name("front.corp.idea");
     Route::view("brand", "front.corp.brand")->name("front.corp.brand");
-    Route::view("company", "front.corp.company")->name("front.corp.company");
-    Route::view("history", "front.corp.history")->name("front.corp.history");
+    Route::get("company", function() {
+        $awards = \App\Models\Award::where("is_active", 1)->orderBy("order", "asc")->get();
+        return view("front.corp.company", compact("awards"));
+    })->name("front.corp.company");
+    Route::get("history", function() {
+        $histories = \App\Models\History::where("is_active", 1)->orderBy("year", "asc")->orderBy("sort_order", "asc")->get();
+        return view("front.corp.history", compact("histories"));
+    })->name("front.corp.history");
     Route::view("safetyManagement", "front.corp.safetyManagement")->name("front.corp.safetyManagement");
+});
+
+Route::prefix("board")->group(function() {
+    Route::get("{board_id}", "App\Http\Controllers\Front\Board\BoardController@index");
+    Route::get("{board_id}/{post_id}", "App\Http\Controllers\Front\Board\BoardController@view");
 });
 
 // Admin UI Routes
@@ -35,18 +52,18 @@ Route::prefix('admin')->group(function () {
         Route::view('settings', 'admin.settings.index')->name('admin.settings.index');
         Route::view('boards', 'admin.boards.index')->name('admin.boards.index');
         Route::view('boards/create', 'admin.boards.create')->name('admin.boards.create');
-        
+
         // Posts Management
         Route::get('boards/{slug}/posts', function($slug) {
             $board = \App\Models\Board::where('slug', $slug)->firstOrFail();
             return view('admin.boards.posts.index', compact('board'));
         })->name('admin.posts.index');
-        
+
         Route::get('boards/{slug}/posts/create', function($slug) {
             $board = \App\Models\Board::where('slug', $slug)->firstOrFail();
             return view('admin.boards.posts.form', compact('board'));
         })->name('admin.posts.create');
-        
+
         Route::get('boards/{slug}/posts/{id}/edit', function($slug, $id) {
             $board = \App\Models\Board::where('slug', $slug)->firstOrFail();
             $post = \App\Models\Post::findOrFail($id);
