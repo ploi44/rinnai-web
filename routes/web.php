@@ -35,8 +35,28 @@ Route::prefix('admin')->group(function () {
         Route::view('settings', 'admin.settings.index')->name('admin.settings.index');
         Route::view('boards', 'admin.boards.index')->name('admin.boards.index');
         Route::view('boards/create', 'admin.boards.create')->name('admin.boards.create');
+        
+        // Posts Management
+        Route::get('boards/{slug}/posts', function($slug) {
+            $board = \App\Models\Board::where('slug', $slug)->firstOrFail();
+            return view('admin.boards.posts.index', compact('board'));
+        })->name('admin.posts.index');
+        
+        Route::get('boards/{slug}/posts/create', function($slug) {
+            $board = \App\Models\Board::where('slug', $slug)->firstOrFail();
+            return view('admin.boards.posts.form', compact('board'));
+        })->name('admin.posts.create');
+        
+        Route::get('boards/{slug}/posts/{id}/edit', function($slug, $id) {
+            $board = \App\Models\Board::where('slug', $slug)->firstOrFail();
+            $post = \App\Models\Post::findOrFail($id);
+            return view('admin.boards.posts.form', compact('board', 'post'));
+        })->name('admin.posts.edit');
         Route::view('banners', 'admin.banners.index')->name('admin.banners.index');
         Route::view('popups', 'admin.popups.index')->name('admin.popups.index');
+        Route::view('awards', 'admin.awards.index')->name('admin.awards.index');
+        Route::view('histories', 'admin.histories.index')->name('admin.histories.index');
+        Route::view('notices', 'admin.notices.index')->name('admin.notices.index');
     });
 });
 

@@ -1,7 +1,7 @@
 <x-front.layout>
     <x-slot:head>
         <x-front.head-main>
-            <x-slot:title>RINNAI</x-slot:title>
+            <x-slot:title>{{ setting("site_name", "Rinnai") }}</x-slot:title>
         </x-front.head-main>
     </x-slot:head>
 
@@ -11,41 +11,23 @@
         <div id="top">
 
             <!-- Main Visual -->
-            <div class="mainvisual">
+            <div class="mainvisual" x-data="postMainSlide()" x-init="fetchMainSlide()">
                 <div class="pc swiper-container swiper-mv">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><a href="#none"><img src="../assets/images/top/main01.jpg" alt="Brand"></a></div>
-                        <div class="swiper-slide"><a href="#none"><img src="../assets/images/top/main02.jpg" alt="Brand"></a></div>
-                        <div class="swiper-slide"><a href="#none"><img src="../assets/images/top/main03.jpg" alt="Brand"></a></div>
-                        <div class="swiper-slide"><a href="#none"><img src="../assets/images/top/main04.jpg" alt="Brand"></a></div>
+                        <template x-for="slide in slideItems" :key="slide.id">
+                            <div class="swiper-slide"><a href="#none"><img :src="slide.pc_image" alt="Brand"></a></div>
+                        </template>
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
                 <div class="sp swiper-container swiper-mv">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><a href="#none"><img src="../assets/images/top/main01_sp.jpg" alt="Brand"></a></div>
-                        <div class="swiper-slide"><a href="#none"><img src="../assets/images/top/main02_sp.jpg" alt="Brand"></a></div>
-                        <div class="swiper-slide"><a href="#none"><img src="../assets/images/top/main03_sp.jpg" alt="Brand"></a></div>
-                        <div class="swiper-slide"><a href="#none"><img src="../assets/images/top/main04_sp.jpg" alt="Brand"></a></div>
+                        <template x-for="slide in slideItems" :key="slide.id">
+                            <div class="swiper-slide"><a href="#none"><img :src="slide.mobile_image" alt="Brand"></a></div>
+                        </template>
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-                <script>
-                    var swiper = new Swiper('.swiper-container.swiper-mv', {
-                        spaceBetween: 0,
-                        speed: 500,
-                        centeredSlides: true,
-                        loop: true,
-                        autoplay: {
-                            delay: 5000,
-                            disableOnInteraction: false,
-                        },
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable: true,
-                        },
-                    });
-                </script>
             </div>
             <p class="bar-gray">Creating a healthier way of living</p>
             <!-- /Main Visual -->
@@ -53,21 +35,17 @@
             <div id="mainContent">
 
                 <!-- 주요안내 -->
-                <section class="important-news">
+                <section class="important-news" x-data="postNotice()" x-init="fetchNotice()">
                     <h2 class="border-red"><span class="cmn-icon icon-svg icon-exclamation"></span>주요안내</h2>
                     <ul class="important-news-content">
-                        <li>
-                            <a href="/dummy/">
-                                <p class="important-news-ttl"><span class="cmn-icon icon-arrow -r"></span>린나이몰 방문하기</p>
-                                <p class="important-news-txt">새로워진 린나이몰이 리뉴얼 오픈했습니다. 더 편리해진 쇼핑 환경과 함께 린나이 멤버십 혜택을 강화해 다양한 할인·적립 등 알찬 혜택을 제공해드립니다. <br>앞으로도 다채로운 프로모션으로 고객 여러분과 더 가까이 만나겠습니다.</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/dummy/">
-                                <p class="important-news-ttl"><span class="cmn-icon icon-arrow -r"></span>방문 수리 종료 안내</p>
-                                <p class="important-news-txt">기능성(내부)부품 판매 중단 및 센터 방문 수리 종료 안내</p>
-                            </a>
-                        </li>
+                        <template x-for="notice in notices" :key="notice.id">
+                            <li>
+                                <a :href="notice.link_url" target="_blank">
+                                    <p class="important-news-ttl"><span class="cmn-icon icon-arrow -r"></span><span x-text="notice.title"></span></p>
+                                    <p class="important-news-txt" x-text="notice.content"></p>
+                                </a>
+                            </li>
+                        </template>
                     </ul>
                 </section>
                 <!-- /주요안내 -->
@@ -81,11 +59,13 @@
                             <!-- <video controls muted preload="none" playsinline controlsList="nodownload" src="../assets/media/corp/movie/chapter1.mp4" poster="/assets/images/corp/brand/img_brand_chapter01.jpg" width="100%"></video> -->
                             <div class="youtube_area">
                                 <div class="sc_box">
-                                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/pJZT1VeT5S8?autoplay=1&mute=1&rel=0&loop=1&playlist=pJZT1VeT5S8"
-                                            title="[린나이] 2026 | 자동조리 레인지 : &#39;요리 중에도 삶은 계속되니까&#39; 남자편(30초)" frameborder="0"
+                                    @if(getMainYoutubeEmbedUrl() !== "")
+                                    <iframe width="100%" height="100%" src="{{ getMainYoutubeEmbedUrl() }}"
+                                            title="" frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                                     </iframe>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -137,4 +117,71 @@
         <!-- /Top page template -->
 
     </main>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data("postMainSlide", () => ({
+                slideItems: [],
+                swiperInstance: null,
+                init() {
+                    this.fetchMainSlide();
+                },
+                fetchMainSlide() {
+                    axios.post('/api/admin/banners/list', {
+                        is_active: 1
+                    }, {
+                        headers: { 'Content-Type': 'application/json' }
+                    }).then(response => {
+                        this.slideItems = response.data.data;
+
+                        this.$nextTick(() => {
+                            this.initSwiper();
+                        });
+                    }).catch(error => {
+                        console.error('메인 슬라이드 목록을 불러오는데 실패했습니다.', error);
+                    });
+                },
+                initSwiper() {
+                    // 이미 인스턴스가 있다면 파괴 후 재설정 (데이터 갱신 대비)
+                    if (this.swiperInstance) {
+                        this.swiperInstance.destroy();
+                    }
+
+                    this.swiperInstance = new Swiper('.swiper-container.swiper-mv', {
+                        spaceBetween: 0,
+                        speed: 500,
+                        centeredSlides: true,
+                        loop: true,
+                        autoplay: {
+                            delay: 5000,
+                            disableOnInteraction: false,
+                        },
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                    });
+                },
+            }));
+
+            Alpine.data("postNotice", () => ({
+                notices:[],
+                init() {
+                    this.fetchNotice();
+                },
+                fetchNotice() {
+                  axios.post("/api/admin/notices/list", {
+                      is_active: 1
+                  }, {
+                      headers: { 'Content-Type': 'application/json' }
+                  }).then(response => {
+                      this.notices = response.data.data;
+
+                  }).catch(error => {
+                      console.error('주요뉴스 목록을 불러오는데 실패했습니다.', error);
+                  })
+                },
+            }));
+        });
+    </script>
 </x-front.layout>

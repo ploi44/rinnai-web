@@ -15,6 +15,9 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
+        // 활성화된 계정만 로그인 가능
+        $credentials['is_active'] = true;
+
         $remember = $request->boolean('remember-me');
 
         if (Auth::attempt($credentials, $remember)) {

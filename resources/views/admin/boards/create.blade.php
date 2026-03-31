@@ -40,24 +40,6 @@
                         </div>
                     </div>
 
-                    <!-- Board Permissions -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 border-b border-gray-50 pb-6">
-                        <div class="md:col-span-1">
-                            <label class="block text-sm font-medium text-gray-900">접근 권한</label>
-                            <div class="text-sm text-gray-500 mt-1">게시판을 읽고 쓸 수 있는 최소 레벨을 설정합니다. (1:일반, 10:관리자)</div>
-                        </div>
-                        <div class="md:col-span-2 flex space-x-4">
-                            <div class="w-1/2">
-                                <label class="block text-xs text-gray-500 mb-1">읽기 권한</label>
-                                <input type="number" x-model.number="form.read_level" min="1" max="10" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm py-2 px-3">
-                            </div>
-                            <div class="w-1/2">
-                                <label class="block text-xs text-gray-500 mb-1">쓰기 권한</label>
-                                <input type="number" x-model.number="form.write_level" min="1" max="10" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm py-2 px-3">
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Board Type Select -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="md:col-span-1">
@@ -65,7 +47,7 @@
                             <div class="text-sm text-rose-500 mt-1 font-medium">※ 중요: 최초 생성 이후에는 유형을 전환할 수 없습니다.</div>
                         </div>
                         <div class="md:col-span-2">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
                                 <!-- Type: General -->
                                 <div>
@@ -97,6 +79,22 @@
                                         <p class="text-xs text-gray-500 flex-1">이미지 썸네일 중심의 그리드 형태 게시판 (사진첩 등)</p>
                                     </label>
                                 </div>
+
+                                <!-- Type: Youtube -->
+                                <div>
+                                    <input type="radio" name="board_type" id="type_youtube" value="youtube" x-model="form.type" class="peer sr-only">
+                                    <label for="type_youtube" class="block cursor-pointer rounded-xl border border-gray-200 bg-white p-4 hover:bg-gray-50 peer-checked:border-red-600 peer-checked:ring-1 peer-checked:ring-red-600 transition-all flex flex-col h-full relative">
+                                        <!-- Checked Icon -->
+                                        <div class="absolute top-4 right-4 text-red-600 opacity-0 peer-checked:opacity-100 transition-opacity">
+                                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                        </div>
+                                        <div class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-3">
+                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                                        </div>
+                                        <h4 class="font-semibold text-gray-900 text-sm mb-1">유튜브형 게시판</h4>
+                                        <p class="text-xs text-gray-500 flex-1">유튜브 영상 링크를 썸네일과 함께 연동하는 게시판</p>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -124,9 +122,7 @@
                 form: {
                     slug: '',
                     name: '',
-                    type: 'general',
-                    read_level: 1,
-                    write_level: 1
+                    type: 'general'
                 },
                 saving: false,
 

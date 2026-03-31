@@ -17,4 +17,10 @@
 <script src="../assets/js/vendor/jquery.matchHeight.js"></script>
 <script src="../assets/js/vendor/scroll-hint.min.js"></script>
 <script src="../assets/js/project.js"></script>
+
+
+<!-- Scripts -->
+@vite(['resources/js/app.js'])
+<!-- Alpine.js -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <!-- /resources -->

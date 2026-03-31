@@ -13,7 +13,12 @@ class Board extends Model
         'slug',
         'name',
         'type',
-        'read_level',
-        'write_level'
+        'has_thumbnail',
+        'has_attachment',
     ];
+
+    public function categories()
+    {
+        return $this->hasMany(BoardCategory::class)->orderBy('order');
+    }
 }

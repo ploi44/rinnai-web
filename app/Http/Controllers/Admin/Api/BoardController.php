@@ -22,9 +22,7 @@ class BoardController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:boards,slug',
-            'type' => 'required|in:general,album',
-            'read_level' => 'required|integer|min:1|max:10',
-            'write_level' => 'required|integer|min:1|max:10',
+            'type' => 'required|in:general,album,youtube',
         ]);
 
         $board = Board::create($validated);
@@ -41,13 +39,11 @@ class BoardController extends Controller
         $request->validate([
             'id' => 'required|exists:boards,id',
             'name' => 'sometimes|string|max:255',
-            'type' => 'sometimes|in:general,album',
-            'read_level' => 'sometimes|integer|min:1|max:10',
-            'write_level' => 'sometimes|integer|min:1|max:10',
+            'type' => 'sometimes|in:general,album,youtube',
         ]);
 
         $board = Board::findOrFail($request->input('id'));
-        $board->update($request->only(['name', 'type', 'read_level', 'write_level']));
+        $board->update($request->only(['name', 'type']));
 
         return response()->json([
             'success' => true,

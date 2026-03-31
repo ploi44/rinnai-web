@@ -15,14 +15,26 @@ class UploadController extends Controller
     public function upload(Request $request)
     {
         $request->validate([
-            'file' => 'required|file|max:10240', // 10MB max
+            'file' => 'required|file|max:102400', // 100MB max
+            'folder' => 'nullable|string|max:255',
         ]);
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            // Store the file in the public disk, under the 'uploads' directory
-            $path = $file->store('uploads', 'public');
             
+            // Determine storage path safely
+            $folder = $request->input('folder');
+            if ($folder) {
+                // Remove trailing/leading slashes and prevent directory traversal
+                $folder = trim(str_replace('..', '', $folder), '/');
+                $subPath = 'uploads/' . $folder;
+            } else {
+                $subPath = 'uploads';
+            }
+            
+            // Store the file in the public disk, under the calculated directory
+            $path = $file->store($subPath, 'public');
+
             return response()->json([
                 'success' => true,
                 'url' => '/storage/' . $path,

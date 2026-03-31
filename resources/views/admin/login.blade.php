@@ -19,11 +19,7 @@
     <div class="max-w-md w-full">
         <!-- Logo Area -->
         <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30 mb-4">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-            </div>
-            <h1 class="text-3xl font-bold text-slate-900 tracking-tight">ADMIN PANEL</h1>
-            <p class="text-slate-500 mt-2">관리자 계정으로 로그인해주세요.</p>
+            <h1 class="flex justify-center items-center"><img src="/assets/images/logo.svg"></h1>
         </div>
 
         <!-- Login Card -->
@@ -36,7 +32,7 @@
                 @endif
                 <form action="{{ route('admin.login.submit') }}" method="POST" class="space-y-6">
                     @csrf
-                    
+
                     <div>
                         <label for="user_id" class="block text-sm font-medium text-slate-700 mb-1.5">아이디</label>
                         <div class="relative">
@@ -50,7 +46,6 @@
                     <div>
                         <div class="flex items-center justify-between mb-1.5">
                             <label for="password" class="block text-sm font-medium text-slate-700">비밀번호</label>
-                            <a href="#" class="text-xs text-blue-600 hover:text-blue-800 font-medium">비밀번호 찾기</a>
                         </div>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -76,7 +71,7 @@
                 <p class="text-xs text-slate-500">&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</p>
             </div>
         </div>
-        
+
         <div class="mt-8 text-center text-sm text-slate-500">
             <a href="{{ url('/') }}" class="inline-flex items-center hover:text-slate-700 transition-colors">
                 <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>

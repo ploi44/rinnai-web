@@ -18,6 +18,7 @@ class Popup extends Model
         'start_date',
         'end_date',
         'is_active',
+        'sort_order',
     ];
 
     protected $casts = [

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SettingController extends Controller
 {
@@ -27,6 +28,9 @@ class SettingController extends Controller
                 ['value' => is_array($value) ? json_encode($value) : $value]
             );
         }
+
+        // 캐시 무효화
+        Cache::forget('global_site_settings');
 
         return response()->json([
             'success' => true,

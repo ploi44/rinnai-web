@@ -23,9 +23,10 @@
         </div>
     </nav>
 
-    <p class="copyright">&copy;
-        린나이코리아(주) 사장 : 조상훈  |  사업자등록번호 : 137-81-00581 | 인천광역시 부평구 백범로577번길 48  (십정동)<br>
-        Rinnai Corporation.
+    <p class="copyright">
+        {{ setting("company_name", "© 린나이코리아(주)") }} 사장 : {{ setting("representative", "조성훈") }}  |  사업자등록번호 :
+        {{ setting("business_number", "") }} | {{ setting("address") }}<br>
+        {{ setting("copyright", "sg") }}
     </p>
     <p id="pagetop"><a class="no-menu-close" href="javascript:void(0);"><span class="icon-pagetop"></span>UP</a></p>
 </footer>

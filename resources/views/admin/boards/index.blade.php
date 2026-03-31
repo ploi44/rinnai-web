@@ -29,6 +29,7 @@
                     <option value="">전체 타입</option>
                     <option value="general">일반게시판</option>
                     <option value="album">앨범형</option>
+                    <option value="youtube">유튜브형</option>
                 </select>
                 <button @click="page=1; fetchBoards()" class="ml-3 inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
                     검색
@@ -48,7 +49,6 @@
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID(Slug)</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">게시판 형태</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">게시판 이름</th>
-                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">읽기/쓰기 권한</th>
                         <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">상태</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">생성일</th>
                         <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">관리</th>
@@ -60,15 +60,17 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" x-text="board.slug"></td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium border"
-                                      :class="board.type === 'album' ? 'bg-purple-50 text-purple-700 border-purple-200' : 'bg-blue-50 text-blue-700 border-blue-200'"
-                                      x-text="board.type === 'album' ? '앨범형' : '일반형'">
+                                      :class="{
+                                          'bg-purple-50 text-purple-700 border-purple-200': board.type === 'album',
+                                          'bg-red-50 text-red-700 border-red-200': board.type === 'youtube',
+                                          'bg-blue-50 text-blue-700 border-blue-200': board.type === 'general',
+                                          'bg-gray-50 text-gray-700 border-gray-200': !['album', 'youtube', 'general'].includes(board.type)
+                                      }"
+                                      x-text="board.type === 'album' ? '앨범형' : (board.type === 'youtube' ? '유튜브형' : '일반형')">
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900 font-bold" x-text="board.name"></div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center font-medium">
-                                <span x-text="'R:' + board.read_level + ' / W:' + board.write_level"></span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center">
                                 <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">사용</span>
@@ -76,12 +78,13 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="new Date(board.created_at).toLocaleDateString()">
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a :href="'/admin/boards/' + board.slug + '/posts'" class="text-blue-600 hover:text-blue-900 px-2 font-bold">게시물 관리</a>
                                 <button @click="deleteBoard(board.id)" class="text-rose-600 hover:text-rose-900 px-2">삭제</button>
                             </td>
                         </tr>
                     </template>
                     <tr x-show="boards.length === 0">
-                        <td colspan="7" class="px-6 py-8 text-center text-gray-500">등록된 게시판이 없습니다.</td>
+                        <td colspan="6" class="px-6 py-8 text-center text-gray-500">등록된 게시판이 없습니다.</td>
                     </tr>
                 </tbody>
             </table>

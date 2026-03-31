@@ -10,7 +10,7 @@ class PopupController extends Controller
 {
     public function list(Request $request)
     {
-        $popups = Popup::orderBy('id', 'desc')->get();
+        $popups = Popup::orderBy('sort_order', 'asc')->orderBy('id', 'desc')->get();
         return response()->json([
             'success' => true,
             'data' => $popups
@@ -31,6 +31,7 @@ class PopupController extends Controller
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date|after_or_equal:start_date',
             'is_active' => 'boolean',
+            'sort_order' => 'integer',
         ]);
 
         $popup = Popup::create($data);
@@ -58,6 +59,7 @@ class PopupController extends Controller
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date|after_or_equal:start_date',
             'is_active' => 'boolean',
+            'sort_order' => 'integer',
         ]);
 
         $popup->update($data);
@@ -77,6 +79,21 @@ class PopupController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Popup deleted successfully.'
+        ]);
+    }
+
+    public function reorder(Request $request)
+    {
+        $items = $request->input('items'); // array of ['id' => 1, 'sort_order' => 1]
+        if (is_array($items)) {
+            foreach ($items as $item) {
+                Popup::where('id', $item['id'])->update(['sort_order' => $item['sort_order']]);
+            }
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => '순서가 변경되었습니다.'
         ]);
     }
 }

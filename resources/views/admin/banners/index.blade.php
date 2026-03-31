@@ -32,18 +32,19 @@
                 </div>
             </template>
 
-            <div class="space-y-4">
+            <div class="space-y-4" x-ref="sortableList">
                 <template x-for="banner in banners" :key="banner.id">
-                    <div class="flex items-center bg-gray-50 border border-gray-200 rounded-xl p-4 transition-shadow hover:shadow-md">
-                        <div class="w-48 h-24 bg-gray-200 rounded-lg overflow-hidden shrink-0 relative flex items-center justify-center">
+                    <div class="flex items-center bg-gray-50 border border-gray-200 rounded-xl p-4 transition-shadow hover:shadow-md" :data-id="banner.id">
+                        <div class="handle cursor-grab active:cursor-grabbing p-2 text-gray-400 hover:text-gray-600">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        </div>
+                        <div class="w-48 h-24 bg-gray-200 rounded-lg overflow-hidden shrink-0 relative flex items-center justify-center ml-2">
                             <template x-if="banner.pc_image">
-                                <img :src="banner.pc_image" class="w-full h-full object-cover" alt="PC Image">
+                                <img :src="banner.pc_image" class="w-full h-full object-cover" alt="Banner Image">
                             </template>
                         </div>
                         <div class="ml-6 flex-1">
-                            <h4 class="text-base font-bold text-gray-900" x-text="banner.title || '제목 없음'"></h4>
-                            <p class="text-sm text-gray-500 mt-1 truncate">연결 URL: <span x-text="banner.link || '없음'"></span></p>
-                            <div class="mt-2 flex space-x-3 text-xs text-gray-500">
+                            <div class="flex space-x-3 text-sm text-gray-700">
                                 <span>순서: <span x-text="banner.sort_order" class="font-bold"></span></span>
                                 <span :class="banner.is_active ? 'text-green-600 font-bold' : 'text-red-500'">상태: <span x-text="banner.is_active ? '노출중' : '숨김'"></span></span>
                             </div>
@@ -68,10 +69,6 @@
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                                 <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title" x-text="form.id ? '배너 수정' : '새 배너 등록'"></h3>
                                 <div class="mt-6 space-y-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">배너 제목</label>
-                                        <input type="text" x-model="form.title" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                    </div>
                                     <div class="grid grid-cols-2 gap-4">
                                         <div>
                                             <label class="block text-sm font-medium text-gray-700 mb-1">PC 이미지 (필수)</label>
@@ -98,19 +95,6 @@
                                                     <input type="file" @change="uploadImage($event, 'mobile_image')" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*">
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700 mb-1">클릭 시 연결 URL</label>
-                                            <input type="text" x-model="form.link" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="https://...">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700 mb-1">타겟(창 열림)</label>
-                                            <select x-model="form.target" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                                <option value="_self">현재 창 (_self)</option>
-                                                <option value="_blank">새 창 (_blank)</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-2 gap-4">
@@ -143,6 +127,8 @@
         </div>
     </div>
 
+    <!-- SortableJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('bannersManager', () => ({
@@ -151,11 +137,8 @@
                 saving: false,
                 form: {
                     id: null,
-                    title: '',
                     pc_image: '',
                     mobile_image: '',
-                    link: '',
-                    target: '_self',
                     sort_order: 0,
                     start_date: '',
                     end_date: '',
@@ -167,8 +150,44 @@
                         headers: { 'Content-Type': 'application/json' }
                     }).then(response => {
                         this.banners = response.data.data;
+                        this.$nextTick(() => { this.initSortable(); });
                     }).catch(error => {
                         alert('배너 목록을 불러오는데 실패했습니다.');
+                    });
+                },
+
+                initSortable() {
+                    if (this.sortableInstance) {
+                        this.sortableInstance.destroy();
+                    }
+                    if (this.$refs.sortableList) {
+                        this.sortableInstance = new Sortable(this.$refs.sortableList, {
+                            handle: '.handle',
+                            animation: 150,
+                            onEnd: (evt) => {
+                                // re-calculate sort_orders based on new DOM position
+                                const itemEls = Array.from(this.$refs.sortableList.children).filter(el => el.hasAttribute('data-id'));
+                                const newOrder = itemEls.map((el, index) => ({
+                                    id: parseInt(el.getAttribute('data-id')),
+                                    sort_order: index + 1
+                                }));
+                                this.saveOrder(newOrder);
+                            }
+                        });
+                    }
+                },
+
+                saveOrder(newOrder) {
+                    axios.post('/api/admin/banners/reorder', { items: newOrder }, {
+                        headers: { 'Content-Type': 'application/json' }
+                    }).then(res => {
+                        if(res.data.success) {
+                            // Update local models softly without full refresh if possible, or just fetch:
+                            this.fetchBanners();
+                        }
+                    }).catch(err => {
+                        console.error('순서 저장 오류:', err);
+                        alert('순서 저장에 실패했습니다.');
                     });
                 },
 
@@ -176,7 +195,8 @@
                     if(banner) {
                         this.form = { ...banner, start_date: banner.start_date || '', end_date: banner.end_date || '' };
                     } else {
-                        this.form = { id: null, title: '', pc_image: '', mobile_image: '', link: '', target: '_self', sort_order: this.banners.length, start_date: '', end_date: '', is_active: true };
+                        const maxOrder = this.banners.length > 0 ? Math.max(...this.banners.map(b => b.sort_order)) + 1 : 1;
+                        this.form = { id: null, pc_image: '', mobile_image: '', sort_order: maxOrder, start_date: '', end_date: '', is_active: true };
                     }
                     this.isModalOpen = true;
                 },
@@ -191,6 +211,7 @@
 
                     const formData = new FormData();
                     formData.append('file', file);
+                    formData.append('folder', 'slide');
                     event.target.value = '';
 
                     axios.post('/api/admin/upload', formData).then(response => {

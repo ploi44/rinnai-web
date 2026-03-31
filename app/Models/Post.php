@@ -15,7 +15,7 @@ class Post extends Model
         'title',
         'content',
         'thumbnail',
-        'category',
+        'category_id',
         'attachments',
     ];
 
@@ -26,6 +26,11 @@ class Post extends Model
     public function board()
     {
         return $this->belongsTo(Board::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(BoardCategory::class, 'category_id');
     }
 
     public function user()
