@@ -39,7 +39,7 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                             </div>
-                            <input type="text" id="user_id" name="user_id" value="{{ old('user_id', 'admin') }}" class="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm transition-shadow" placeholder="아이디" required autofocus>
+                            <input type="text" id="user_id" name="user_id" value="{{ old('user_id', '') }}" class="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm transition-shadow" placeholder="아이디" required autofocus>
                         </div>
                     </div>
 
