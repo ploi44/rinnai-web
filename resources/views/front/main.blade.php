@@ -101,6 +101,72 @@
         <!-- /Top page template -->
 
     </main>
+
+    <!-- Layer Popups -->
+    @if(isset($popups) && $popups->count() > 0)
+        @foreach($popups as $popup)
+            <div id="layer_popup_{{ $popup->id }}" class="layer-popup" style="position: absolute; left: {{ $popup->position_x }}px; top: {{ $popup->position_y }}px; z-index: 9999; background: #fff; border: 1px solid #ccc; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: none;">
+                <div style="width: {{ $popup->width }}px; height: {{ $popup->height }}px;">
+                    @if($popup->link)
+                        <a href="{{ $popup->link }}" target="{{ $popup->target ?? '_self' }}" style="display: block; width: 100%; height: 100%;">
+                            <img src="{{ $popup->image }}" alt="{{ $popup->title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        </a>
+                    @else
+                        <img src="{{ $popup->image }}" alt="{{ $popup->title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                    @endif
+                </div>
+                <div style="padding: 8px 10px; background: #222; color: #fff; text-align: right; font-size: 13px; display: flex; justify-content: space-between; align-items: center;">
+                    <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; margin: 0;">
+                        <input type="checkbox" class="popup-today-check" data-id="{{ $popup->id }}"> 오늘 하루 열지 않기
+                    </label>
+                    <a href="#none" style="color: #fff; text-decoration: none;" onclick="closePopup({{ $popup->id }}); return false;">[닫기]</a>
+                </div>
+            </div>
+        @endforeach
+
+        <script>
+            function setCookie(name, value, expiredays) {
+                var todayDate = new Date();
+                todayDate.setDate(todayDate.getDate() + expiredays);
+                document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+            }
+
+            function getCookie(name) {
+                var nameOfCookie = name + "=";
+                var x = 0;
+                while (x <= document.cookie.length) {
+                    var y = (x + nameOfCookie.length);
+                    if (document.cookie.substring(x, y) == nameOfCookie) {
+                        if ((endOfCookie = document.cookie.indexOf(";", y)) == -1)
+                            endOfCookie = document.cookie.length;
+                        return unescape(document.cookie.substring(y, endOfCookie));
+                    }
+                    x = document.cookie.indexOf(" ", x) + 1;
+                    if (x == 0) break;
+                }
+                return "";
+            }
+
+            function closePopup(id) {
+                var $popup = $('#layer_popup_' + id);
+                if ($popup.find('.popup-today-check').is(':checked')) {
+                    setCookie('popup_' + id, 'done', 1);
+                }
+                $popup.hide();
+            }
+
+            $(function() {
+                $('.layer-popup').each(function() {
+                    var id = $(this).attr('id').replace('layer_popup_', '');
+                    if (getCookie('popup_' + id) !== 'done') {
+                        $(this).show();
+                    }
+                });
+            });
+        </script>
+    @endif
+    <!-- /Layer Popups -->
+
     <script>
         $(function() {
             var swiper = new Swiper('.swiper-container.swiper-mv', {

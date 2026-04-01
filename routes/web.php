@@ -8,8 +8,16 @@ Route::get('/', function () {
     $mainSlides = \App\Models\Banner::where("is_active", 1)->orderBy("sort_order", "asc")->get();
     $notices = \App\Models\Notice::where("is_active", 1)->orderBy("sort_order", "asc")->get();
     $posts = \App\Models\Post::where("board_id", 1)->orderBy("created_at", "desc")->get();
+    $popups = \App\Models\Popup::where("is_active", 1)
+        ->where(function($query) {
+            $query->whereNull("start_date")->orWhereDate("start_date", "<=", now());
+        })
+        ->where(function($query) {
+            $query->whereNull("end_date")->orWhereDate("end_date", ">=", now());
+        })
+        ->orderBy("sort_order", "asc")->get();
 
-    return view('front.main', compact('mainSlides', 'notices', 'posts'));
+    return view('front.main', compact('mainSlides', 'notices', 'posts', 'popups'));
 });
 
 // 기업개요
