@@ -11,17 +11,16 @@ class AccountController extends Controller
     public function list(Request $request)
     {
         $query = User::query();
-        
+
         // Search functionality
         if ($request->filled('search')) {
             $search = $request->input('search');
             $query->where(function($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%")
                   ->orWhere('user_id', 'like', "%{$search}%");
             });
         }
-        
+
         // Status filter
         if ($request->filled('status')) {
             $status = $request->input('status');
@@ -33,7 +32,7 @@ class AccountController extends Controller
         }
 
         $users = $query->orderBy('id', 'desc')->paginate(10);
-        
+
         return response()->json([
             'success' => true,
             'data' => $users
@@ -45,13 +44,12 @@ class AccountController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'user_id' => 'required|string|max:255|unique:users',
-            'email' => 'required|email|max:255|unique:users',
             'password' => 'required|string|min:4',
             'is_active' => 'boolean'
         ]);
 
         $validated['password'] = bcrypt($validated['password']);
-        
+
         $user = User::create($validated);
 
         return response()->json([
@@ -66,20 +64,18 @@ class AccountController extends Controller
         $request->validate([
             'id' => 'required|exists:users,id',
             'name' => 'sometimes|string|max:255',
-            'email' => 'sometimes|email|max:255|unique:users,email,'.$request->input('id'),
             'password' => 'nullable|string|min:4',
             'is_active' => 'nullable|boolean'
         ]);
 
         $user = User::findOrFail($request->input('id'));
-        
+
         if ($request->has('name')) $user->name = $request->input('name');
-        if ($request->has('email')) $user->email = $request->input('email');
         if ($request->has('is_active')) $user->is_active = $request->boolean('is_active');
         if ($request->filled('password')) {
             $user->password = bcrypt($request->input('password'));
         }
-        
+
         $user->save();
 
         return response()->json([
@@ -96,7 +92,7 @@ class AccountController extends Controller
         ]);
 
         $user = User::findOrFail($request->input('id'));
-        
+
         // Prevent deleting oneself
         if (auth()->id() === $user->id) {
             return response()->json(['success' => false, 'message' => '현재 로그인된 관리자 계정은 삭제할 수 없습니다.'], 403);

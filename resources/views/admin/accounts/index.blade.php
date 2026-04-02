@@ -62,7 +62,6 @@
                                     </div>
                                     <div class="ml-4">
                                         <div class="font-medium text-gray-900" x-text="user.name"></div>
-                                        <div class="text-gray-500" x-text="user.email"></div>
                                         <div class="text-xs text-gray-400" x-text="'ID: ' + (user.user_id || '-')"></div>
                                     </div>
                                 </div>
@@ -112,21 +111,16 @@
                 <div x-show="isModalOpen" x-transition.duration.300ms class="inline-block align-bottom bg-white rounded-xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full">
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <h3 class="text-xl leading-6 font-bold text-gray-900 border-b pb-4 mb-5" id="modal-title" x-text="form.id ? '계정 수정' : '새 계정 등록'"></h3>
-                        
+
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-900 mb-1">이름 <span class="text-rose-500">*</span></label>
                                 <input type="text" x-model="form.name" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="관리자 이름">
                             </div>
-                            
+
                             <div>
                                 <label class="block text-sm font-medium text-gray-900 mb-1">아이디(ID) <span class="text-rose-500" x-show="!form.id">*</span></label>
                                 <input type="text" x-model="form.user_id" :disabled="form.id !== null" :class="{'bg-gray-100': form.id !== null}" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="로그인 아이디">
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-medium text-gray-900 mb-1">이메일 <span class="text-rose-500">*</span></label>
-                                <input type="email" x-model="form.email" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="admin@example.com">
                             </div>
 
                             <div>
@@ -136,7 +130,7 @@
                                 </label>
                                 <input type="password" x-model="form.password" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="비밀번호 (최소 4자 이상)">
                             </div>
-                            
+
                             <div class="pt-2">
                                 <label class="block text-sm font-medium text-gray-900 mb-2">계정 상태</label>
                                 <div class="flex items-center space-x-4 bg-gray-50 p-3 rounded-lg border border-gray-200">
@@ -174,14 +168,13 @@
                 page: 1,
                 lastPage: 1,
                 total: 0,
-                
+
                 isModalOpen: false,
                 saving: false,
                 form: {
                     id: null,
                     name: '',
                     user_id: '',
-                    email: '',
                     password: '',
                     is_active: true
                 },
@@ -226,12 +219,11 @@
                             id: user.id,
                             name: user.name,
                             user_id: user.user_id, // user_id cannot be edited typically but we need to display it
-                            email: user.email,
                             password: '', // Blank by default, only update if filled
                             is_active: user.is_active
                         };
                     } else {
-                        this.form = { id: null, name: '', user_id: '', email: '', password: '', is_active: true };
+                        this.form = { id: null, name: '', user_id: '', password: '', is_active: true };
                     }
                     this.isModalOpen = true;
                 },
@@ -241,10 +233,10 @@
                 },
 
                 saveAccount() {
-                    if(!this.form.name.trim() || !this.form.email.trim() || (!this.form.id && !this.form.password.trim()) || (!this.form.id && !this.form.user_id?.trim())) {
+                    if(!this.form.name.trim() || (!this.form.id && !this.form.password.trim()) || (!this.form.id && !this.form.user_id?.trim())) {
                         alert('필수 항목을 모두 입력해주세요.'); return;
                     }
-                    
+
                     this.saving = true;
                     const url = this.form.id ? '/api/admin/accounts/update' : '/api/admin/accounts/store';
 
