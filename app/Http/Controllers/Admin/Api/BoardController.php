@@ -23,6 +23,7 @@ class BoardController extends Controller
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:boards,slug',
             'type' => 'required|in:general,album,youtube',
+            'pagesize' => 'required|integer|min:0',
         ]);
 
         $board = Board::create($validated);
@@ -40,10 +41,11 @@ class BoardController extends Controller
             'id' => 'required|exists:boards,id',
             'name' => 'sometimes|string|max:255',
             'type' => 'sometimes|in:general,album,youtube',
+            'pagesize' => 'required|integer|min:0',
         ]);
 
         $board = Board::findOrFail($request->input('id'));
-        $board->update($request->only(['name', 'type']));
+        $board->update($request->only(['name', 'type', 'pagesize']));
 
         return response()->json([
             'success' => true,

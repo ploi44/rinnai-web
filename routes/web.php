@@ -60,6 +60,10 @@ Route::prefix('admin')->group(function () {
         Route::view('settings', 'admin.settings.index')->name('admin.settings.index');
         Route::view('boards', 'admin.boards.index')->name('admin.boards.index');
         Route::view('boards/create', 'admin.boards.create')->name('admin.boards.create');
+        Route::get('boards/edit/{id}', function($id) {
+            $board = \App\Models\Board::findOrFail($id);
+            return view('admin.boards.create', compact('board'));
+        })->name('admin.boards.edit');
 
         // Posts Management
         Route::get('boards/{slug}/posts', function($slug) {

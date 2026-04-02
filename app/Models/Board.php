@@ -13,6 +13,7 @@ class Board extends Model
         'slug',
         'name',
         'type',
+        'pagesize',
         'has_thumbnail',
         'has_attachment',
     ];

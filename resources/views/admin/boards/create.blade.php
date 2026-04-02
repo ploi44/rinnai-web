@@ -13,7 +13,7 @@
             </div>
 
             <div class="p-6">
-                <form @submit.prevent="createBoard" class="space-y-8">
+                <form @submit.prevent="isEdit ? updateBoard() : createBoard()" class="space-y-8">
 
                     <!-- Board ID -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 border-b border-gray-50 pb-6">
@@ -24,7 +24,12 @@
                         <div class="md:col-span-2">
                             <div class="flex rounded-md shadow-sm">
                                 <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm bg-gray-50">/boards/</span>
-                                <input type="text" x-model="form.slug" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-blue-500" placeholder="ex) notice" required>
+                                <input type="text"
+                                       x-model="form.slug"
+                                       :readonly="isEdit"
+                                       :class="isEdit ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'"
+                                       class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                       placeholder="ex) notice" required>
                             </div>
                         </div>
                     </div>
@@ -51,8 +56,8 @@
 
                                 <!-- Type: General -->
                                 <div>
-                                    <input type="radio" name="board_type" id="type_general" value="general" x-model="form.type" class="peer sr-only">
-                                    <label for="type_general" class="block cursor-pointer rounded-xl border border-gray-200 bg-white p-4 hover:bg-gray-50 peer-checked:border-blue-600 peer-checked:ring-1 peer-checked:ring-blue-600 transition-all flex flex-col h-full relative">
+                                    <input type="radio" name="board_type" id="type_general" value="general" x-model="form.type" :disabled="isEdit" class="peer sr-only">
+                                    <label for="type_general" :class="isEdit ? 'cursor-not-allowed' : 'cursor-pointer'" class="block rounded-xl border border-gray-200 bg-white p-4 hover:bg-gray-50 peer-checked:border-blue-600 peer-checked:ring-1 peer-checked:ring-blue-600 transition-all flex flex-col h-full relative">
                                         <div class="absolute top-4 right-4 text-blue-600 opacity-0 peer-checked:opacity-100 transition-opacity">
                                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
                                         </div>
@@ -66,8 +71,8 @@
 
                                 <!-- Type: Gallery -->
                                 <div>
-                                    <input type="radio" name="board_type" id="type_gallery" value="album" x-model="form.type" class="peer sr-only">
-                                    <label for="type_gallery" class="block cursor-pointer rounded-xl border border-gray-200 bg-white p-4 hover:bg-gray-50 peer-checked:border-purple-600 peer-checked:ring-1 peer-checked:ring-purple-600 transition-all flex flex-col h-full relative">
+                                    <input type="radio" name="board_type" id="type_gallery" value="album" x-model="form.type" :disabled="isEdit" class="peer sr-only">
+                                    <label for="type_gallery" :class="isEdit ? 'cursor-not-allowed' : 'cursor-pointer'" class="block rounded-xl border border-gray-200 bg-white p-4 hover:bg-gray-50 peer-checked:border-purple-600 peer-checked:ring-1 peer-checked:ring-purple-600 transition-all flex flex-col h-full relative">
                                         <!-- Checked Icon -->
                                         <div class="absolute top-4 right-4 text-purple-600 opacity-0 peer-checked:opacity-100 transition-opacity">
                                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
@@ -82,8 +87,8 @@
 
                                 <!-- Type: Youtube -->
                                 <div>
-                                    <input type="radio" name="board_type" id="type_youtube" value="youtube" x-model="form.type" class="peer sr-only">
-                                    <label for="type_youtube" class="block cursor-pointer rounded-xl border border-gray-200 bg-white p-4 hover:bg-gray-50 peer-checked:border-red-600 peer-checked:ring-1 peer-checked:ring-red-600 transition-all flex flex-col h-full relative">
+                                    <input type="radio" name="board_type" id="type_youtube" value="youtube" x-model="form.type" :disabled="isEdit" class="peer sr-only">
+                                    <label for="type_youtube" :class="isEdit ? 'cursor-not-allowed' : 'cursor-pointer'" class="block rounded-xl border border-gray-200 bg-white p-4 hover:bg-gray-50 peer-checked:border-red-600 peer-checked:ring-1 peer-checked:ring-red-600 transition-all flex flex-col h-full relative">
                                         <!-- Checked Icon -->
                                         <div class="absolute top-4 right-4 text-red-600 opacity-0 peer-checked:opacity-100 transition-opacity">
                                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
@@ -99,6 +104,16 @@
                         </div>
                     </div>
 
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 border-b border-gray-50 pb-6">
+                        <div class="md:col-span-1">
+                            <label class="block text-sm font-medium text-gray-900">페이지당 노출 갯수</label>
+                            <div class="text-sm text-gray-500 mt-1">페이지당 노출할 게시글 갯수입니다. (0으로 입력시 전체 컨텐츠를 한 페이지에 노출)</div>
+                        </div>
+                        <div class="md:col-span-2">
+                            <input type="number" x-model="form.pagesize" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm py-2 px-3" min="0" required>
+                        </div>
+                    </div>
+
                     <div class="pt-6 border-t border-gray-100 flex items-center justify-between">
                         <a href="{{ route('admin.boards.index') }}" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
                             취소
@@ -106,7 +121,7 @@
                         <button type="submit" :disabled="saving" class="bg-blue-600 px-6 py-2.5 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors inline-flex items-center disabled:opacity-50">
                             <span x-show="!saving" class="flex items-center">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                게시판 생성 완료하기
+                                <span x-text="isEdit ? '게시판 수정 완료하기' : '게시판 생성 완료하기'"></span>
                             </span>
                             <span x-show="saving">처리중...</span>
                         </button>
@@ -119,10 +134,13 @@
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('boardCreator', () => ({
+                isEdit: {{ isset($board) ? 'true' : 'false' }},
                 form: {
-                    slug: '',
-                    name: '',
-                    type: 'general'
+                    id: '{{ isset($board) ? $board->id : '' }}',
+                    slug: '{{ isset($board) ? $board->slug : "" }}',
+                    name: '{{ isset($board) ? $board->name : "" }}',
+                    type: '{{ isset($board) ? $board->type : "general" }}',
+                    pagesize: {{ isset($board) ? $board->pagesize : 15 }}
                 },
                 saving: false,
 
@@ -139,6 +157,25 @@
                             alert('오류: ' + error.response.data.message);
                         } else {
                             alert('게시판 생성에 실패했습니다.');
+                        }
+                    }).finally(() => {
+                        this.saving = false;
+                    });
+                },
+
+                updateBoard() {
+                    this.saving = true;
+                    axios.post('/api/admin/boards/update', this.form, {
+                        headers: { 'Content-Type': 'application/json' }
+                    }).then(response => {
+                        alert('수정 완료되었습니다.');
+                        window.location.href = "{{ route('admin.boards.index') }}";
+                    }).catch(error => {
+                        console.error(error);
+                        if (error.response && error.response.data && error.response.data.message) {
+                            alert('오류: ' + error.response.data.message);
+                        } else {
+                            alert('게시판 수정에 실패했습니다.');
                         }
                     }).finally(() => {
                         this.saving = false;

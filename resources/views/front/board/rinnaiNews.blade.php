@@ -30,13 +30,7 @@
                     </li>
                     @endforeach
                 </ul>
-                <div class="list_Paging">
-                    <span class="cmn-icon icon-arrow -l"></span>
-                    <span class="p_num on">1</span>
-                    <span class="p_num">2</span>
-                    <span class="p_num">3</span>
-                    <span class="cmn-icon icon-arrow -r"></span>
-                </div>
+                {{ $posts->links("front.board.pagination") }}
             </section>
             <div class="padding40"></div>
         </article>

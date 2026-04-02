@@ -79,6 +79,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <a :href="'/admin/boards/' + board.slug + '/posts'" class="text-blue-600 hover:text-blue-900 px-2 font-bold">게시물 관리</a>
+                                <a :href="'/admin/boards/edit/' + board.id" class="text-green-600 hover:text-green-900 px-2">수정</a>
                                 <button @click="deleteBoard(board.id)" class="text-rose-600 hover:text-rose-900 px-2">삭제</button>
                             </td>
                         </tr>
