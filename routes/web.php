@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 Route::get('/', function () {
     $mainSlides = \App\Models\Banner::where("is_active", 1)->orderBy("sort_order", "asc")->get();
     $notices = \App\Models\Notice::where("is_active", 1)->orderBy("sort_order", "asc")->get();
-    $posts = \App\Models\Post::where("board_id", 1)->orderBy("created_at", "desc")->get();
+    $posts = \App\Models\Post::where("board_id", 1)->orderBy("created_at", "desc")->limit(4)->get();
     $popups = \App\Models\Popup::where("is_active", 1)
         ->where(function($query) {
             $query->whereNull("start_date")->orWhereDate("start_date", "<=", now());
