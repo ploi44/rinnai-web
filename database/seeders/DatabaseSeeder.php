@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             "user_id" => "admin",
             "name" => "관리자",
-            "email" => "admin@rinnai.co.kr",
             "password" => Hash::make("flsskdlqwe123"),
+            "created_at" => now()
         ]);
     }
 }
