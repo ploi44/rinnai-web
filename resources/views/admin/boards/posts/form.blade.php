@@ -221,6 +221,7 @@
                     if (document.querySelector('#editor')) {
                         CKEDITOR.ClassicEditor
                             .create(document.querySelector('#editor'), {
+                                language: 'ko',
                                 removePlugins: [
                                     'CKBox', 'CKFinder', 'EasyImage', 'RealTimeCollaborativeComments', 'RealTimeCollaborativeTrackChanges', 'RealTimeCollaborativeRevisionHistory', 'PresenceList', 'Comments', 'TrackChanges', 'TrackChangesData', 'RevisionHistory', 'Pagination', 'WProofreader', 'MathType', 'SlashCommand', 'Template', 'DocumentOutline', 'FormatPainter', 'TableOfContents', 'PasteFromOfficeEnhanced', 'CaseChange'
                                 ],
