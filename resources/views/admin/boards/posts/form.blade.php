@@ -103,7 +103,7 @@
                     <!-- Tag -->
                     <div>
                         <label for="youtube_tag" class="block text-sm font-medium text-gray-700">태그</label>
-                        <input type="text" id="youtube_tag" x-model="form.youtube_tag" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="동영상 태그을 입력하세요">
+                        <input type="text" id="youtube_tag" x-model="form.youtube_tag" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="예) 태그1,태그2,태그3,...">
                     </div>
                     @endif
 
