@@ -24,7 +24,7 @@
                     <li class="l-col-4 l-col-tb-6 l-col-sm-12">
                         <a href="/board/{{ $post->board->slug }}/{{ $post->id }}"   >
                             <figure><img src="{{ $post->thumbnail }}" alt="언론보도 썸네일"></figure>
-                            <p><span class="cmn-icon icon-arrow -r"></span><time datetime="Year-Month-Date">26.12.24</time></p>
+                            <p><span class="cmn-icon icon-arrow -r"></span><time datetime="Year-Month-Date">{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $post->created_at)->format("y.m.d") }}</time></p>
                             <p class="title col_bot_txt_b">{{ $post->title }}</p>
                         </a>
                     </li>

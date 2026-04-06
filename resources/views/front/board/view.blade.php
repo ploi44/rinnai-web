@@ -16,7 +16,7 @@
             <section class="information">
                 <h2 class="border-red">{{ $post->title }}</h2>
                 <p class="lead col_bot_txt">
-                    2026-12-24
+                    {{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $post->created_at)->format("Y-m-d") }}
                 </p>
                 <div class="padding30"></div>
                 <div class="view_page_section">
