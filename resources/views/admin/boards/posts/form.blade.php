@@ -94,6 +94,7 @@
                             <div class="flex flex-col space-y-2">
                                 <label class="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-center">
                                     <span>썸네일 업로드</span>
+                                    <div class="mt-1 text-sm text-gray-500">썸네일 사이즈 : 720 x 800</div>
                                     <input type="file" class="sr-only" @change="uploadThumbnail" accept="image/*">
                                 </label>
                                 <button type="button" @click="form.thumbnail = null" x-show="form.thumbnail" class="text-xs text-rose-500 hover:text-rose-700">썸네일 삭제</button>
@@ -103,7 +104,7 @@
                     <!-- Tag -->
                     <div>
                         <label for="youtube_tag" class="block text-sm font-medium text-gray-700">태그</label>
-                        <input type="text" id="youtube_tag" x-model="form.youtube_tag" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="예) 태그1,태그2,태그3,...">
+                        <input type="text" id="youtube_tag" x-model="form.youtube_tag" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="예) #태그1,#태그2,#태그3,...">
                     </div>
                     @endif
 
