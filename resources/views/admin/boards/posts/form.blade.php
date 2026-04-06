@@ -346,6 +346,9 @@
                     }
                     this.form.attachments.youtube_url = this.form.youtube_url;
                     this.form.attachments.youtube_tag = this.form.youtube_tag;
+                    if(this.form.content == "") {
+                        this.form.content = this.form.youtube_url;
+                    }
                     @endif
 
                     this.saving = true;
