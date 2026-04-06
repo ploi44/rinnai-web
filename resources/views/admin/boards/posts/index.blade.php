@@ -1,6 +1,6 @@
 <x-admin.layout>
     <x-slot name="header">
-        <a href="{{ route('admin.boards.index') }}" class="text-blue-500 hover:text-blue-700 mr-2">&larr;</a>
+{{--        <a href="{{ route('admin.boards.index') }}" class="text-blue-500 hover:text-blue-700 mr-2">&larr;</a>--}}
         [{{ $board->name }}] 게시글 관리
     </x-slot>
 
