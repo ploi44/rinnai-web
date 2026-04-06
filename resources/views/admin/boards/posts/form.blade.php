@@ -95,7 +95,7 @@
                             </div>
                             <div class="flex flex-col space-y-2">
                                 <label class="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-center">
-                                    <span>썸네일 업로드</span></div>
+                                    <span>썸네일 업로드</span>
                                     <input type="file" class="sr-only" @change="uploadThumbnail" accept="image/*">
                                 </label>
                                 <button type="button" @click="form.thumbnail = null" x-show="form.thumbnail" class="text-xs text-rose-500 hover:text-rose-700">썸네일 삭제</button>
