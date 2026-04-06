@@ -62,45 +62,45 @@
                     <hr class="border-gray-100">
 
                     <!-- SEO Settings -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="md:col-span-1">
-                            <label class="block text-sm font-medium text-gray-900">검색엔진 최적화 (SEO)</label>
-                            <div class="text-sm text-gray-500 mt-1">포털사이트 검색 결과나 SNS 공유 시 노출될 메타 정보를 설정합니다.</div>
-                        </div>
-                        <div class="md:col-span-2 space-y-4">
-                            <div>
-                                <label class="block text-xs text-gray-500 mb-1">검색엔진 노출 타이틀 (기본 사이트 이름과 다를 경우)</label>
-                                <input type="text" x-model="settings.seo_title" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm py-2 px-3" placeholder="린나이 코리아 - 대표 브랜드">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-500 mb-1">사이트 설명 (Description)</label>
-                                <textarea x-model="settings.seo_description" rows="3" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm py-2 px-3" placeholder="사이트에 대한 간략한 설명을 입력하세요."></textarea>
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-500 mb-1">검색 키워드 (Keywords, 콤마로 구분)</label>
-                                <input type="text" x-model="settings.seo_keywords" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm py-2 px-3" placeholder="보일러, 린나이, 가스레인지">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-500 mb-1">SNS 공유용 미리보기 이미지 (OG Image)</label>
-                                <div class="flex items-center space-x-6 mt-1">
-                                    <div class="h-20 w-32 bg-gray-50 border border-gray-300 rounded-lg flex items-center justify-center overflow-hidden shrink-0">
-                                        <template x-if="settings.seo_og_image">
-                                            <img :src="settings.seo_og_image" class="object-cover h-full w-full" alt="OG Image">
-                                        </template>
-                                        <template x-if="!settings.seo_og_image">
-                                            <span class="text-gray-400 text-xs">업로드 안됨</span>
-                                        </template>
-                                    </div>
-                                    <div class="relative overflow-hidden cursor-pointer">
-                                        <button type="button" class="px-3 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
-                                            이미지 등록...
-                                        </button>
-                                        <input type="file" title="OG 이미지 변경" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" @change="uploadOgImage($event)" accept="image/*">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">--}}
+{{--                        <div class="md:col-span-1">--}}
+{{--                            <label class="block text-sm font-medium text-gray-900">검색엔진 최적화 (SEO)</label>--}}
+{{--                            <div class="text-sm text-gray-500 mt-1">포털사이트 검색 결과나 SNS 공유 시 노출될 메타 정보를 설정합니다.</div>--}}
+{{--                        </div>--}}
+{{--                        <div class="md:col-span-2 space-y-4">--}}
+{{--                            <div>--}}
+{{--                                <label class="block text-xs text-gray-500 mb-1">검색엔진 노출 타이틀 (기본 사이트 이름과 다를 경우)</label>--}}
+{{--                                <input type="text" x-model="settings.seo_title" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm py-2 px-3" placeholder="린나이 코리아 - 대표 브랜드">--}}
+{{--                            </div>--}}
+{{--                            <div>--}}
+{{--                                <label class="block text-xs text-gray-500 mb-1">사이트 설명 (Description)</label>--}}
+{{--                                <textarea x-model="settings.seo_description" rows="3" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm py-2 px-3" placeholder="사이트에 대한 간략한 설명을 입력하세요."></textarea>--}}
+{{--                            </div>--}}
+{{--                            <div>--}}
+{{--                                <label class="block text-xs text-gray-500 mb-1">검색 키워드 (Keywords, 콤마로 구분)</label>--}}
+{{--                                <input type="text" x-model="settings.seo_keywords" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm py-2 px-3" placeholder="보일러, 린나이, 가스레인지">--}}
+{{--                            </div>--}}
+{{--                            <div>--}}
+{{--                                <label class="block text-xs text-gray-500 mb-1">SNS 공유용 미리보기 이미지 (OG Image)</label>--}}
+{{--                                <div class="flex items-center space-x-6 mt-1">--}}
+{{--                                    <div class="h-20 w-32 bg-gray-50 border border-gray-300 rounded-lg flex items-center justify-center overflow-hidden shrink-0">--}}
+{{--                                        <template x-if="settings.seo_og_image">--}}
+{{--                                            <img :src="settings.seo_og_image" class="object-cover h-full w-full" alt="OG Image">--}}
+{{--                                        </template>--}}
+{{--                                        <template x-if="!settings.seo_og_image">--}}
+{{--                                            <span class="text-gray-400 text-xs">업로드 안됨</span>--}}
+{{--                                        </template>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="relative overflow-hidden cursor-pointer">--}}
+{{--                                        <button type="button" class="px-3 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">--}}
+{{--                                            이미지 등록...--}}
+{{--                                        </button>--}}
+{{--                                        <input type="file" title="OG 이미지 변경" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" @change="uploadOgImage($event)" accept="image/*">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                     <hr class="border-gray-100">
 
@@ -153,10 +153,10 @@
                     //customer_center: '',
                     address: '',
                     copyright: '',
-                    seo_title: '',
-                    seo_description: '',
-                    seo_keywords: '',
-                    seo_og_image: '',
+                    //seo_title: '',
+                    //seo_description: '',
+                    //seo_keywords: '',
+                    //seo_og_image: '',
                     main_youtube_url: '',
                 },
                 saving: false,
