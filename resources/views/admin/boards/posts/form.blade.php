@@ -79,6 +79,7 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">대표 썸네일 <span class="text-rose-500">*</span></label>
+                        <div class="mt-1 text-sm text-gray-500">썸네일 사이즈 : 720 x 800
                         <div class="mt-2 flex items-center space-x-4">
                             <div class="flex-shrink-0 h-32 w-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center overflow-hidden bg-gray-50 relative">
                                 <template x-if="form.thumbnail">
@@ -93,8 +94,7 @@
                             </div>
                             <div class="flex flex-col space-y-2">
                                 <label class="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-center">
-                                    <span>썸네일 업로드</span>
-                                    <div class="mt-1 text-sm text-gray-500">썸네일 사이즈 : 720 x 800</div>
+                                    <span>썸네일 업로드</span></div>
                                     <input type="file" class="sr-only" @change="uploadThumbnail" accept="image/*">
                                 </label>
                                 <button type="button" @click="form.thumbnail = null" x-show="form.thumbnail" class="text-xs text-rose-500 hover:text-rose-700">썸네일 삭제</button>
