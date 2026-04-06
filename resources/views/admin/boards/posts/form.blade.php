@@ -14,6 +14,7 @@
 
     <!-- Load CDN for CKEditor 5 (Super build for SourceEditing) -->
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/super-build/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/translations/ko.js"></script>
 
     <div class="max-w-5xl" x-data="postForm()">
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
