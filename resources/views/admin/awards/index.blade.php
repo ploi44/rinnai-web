@@ -127,14 +127,16 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">상태</label>
-                                <select x-model="form.is_active" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                <select x-model="form.is_active"
+                                        @change="form.is_active = ($event.target.value === 'true')"
+                                        class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     <option :value="true">노출 (Active)</option>
                                     <option :value="false">숨김 (Inactive)</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-gray-50 px-4 py-4 sm:px-6 sm:flex sm:flex-row-reverse rounded-b-xl border-t border-gray-100">
                         <button type="button" @click="saveAward()" :disabled="saving" class="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm disabled:opacity-50">
                             <span x-text="saving ? '처리중...' : '저장하기'"></span>
@@ -158,10 +160,10 @@
                 page: 1,
                 lastPage: 1,
                 total: 0,
-                
+
                 isModalOpen: false,
                 saving: false,
-                
+
                 form: {
                     id: null,
                     title: '',
@@ -257,12 +259,12 @@
 
                 saveAward() {
                     if(!this.form.title.trim()) {
-                        alert('수상명을 입력해주세요.'); 
+                        alert('수상명을 입력해주세요.');
                         return;
                     }
 
                     this.saving = true;
-                    
+
                     const url = this.form.id ? '/api/admin/awards/update' : '/api/admin/awards/store';
 
                     axios.post(url, this.form, {

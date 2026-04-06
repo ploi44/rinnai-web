@@ -104,7 +104,9 @@
                                         </div>
                                         <div>
                                             <label class="block text-sm font-medium text-gray-700 mb-1">노출 여부</label>
-                                            <select x-model="form.is_active" class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                            <select x-model="form.is_active"
+                                                    @change="form.is_active = ($event.target.value === 'true')"
+                                                    class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                                 <option :value="true">노출함</option>
                                                 <option :value="false">노출안함</option>
                                             </select>
