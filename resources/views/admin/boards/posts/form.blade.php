@@ -41,6 +41,7 @@
                     <!-- Thumbnail for Album Board -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700">대표 썸네일 <span class="text-gray-400 text-xs font-normal ml-1">(선택)</span></label>
+                        <div class="mt-1 text-sm text-gray-500">썸네일 사이즈 : 720 x 800
                         <div class="mt-2 flex items-center space-x-4">
                             <div class="flex-shrink-0 h-32 w-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center overflow-hidden bg-gray-50 relative">
                                 <template x-if="form.thumbnail">
@@ -79,7 +80,6 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">대표 썸네일 <span class="text-rose-500">*</span></label>
-                        <div class="mt-1 text-sm text-gray-500">썸네일 사이즈 : 720 x 800
                         <div class="mt-2 flex items-center space-x-4">
                             <div class="flex-shrink-0 h-32 w-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center overflow-hidden bg-gray-50 relative">
                                 <template x-if="form.thumbnail">
