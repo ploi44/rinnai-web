@@ -12,8 +12,8 @@
         </div>
     </x-slot>
 
-    <!-- Load CDN for CKEditor 5 -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <!-- Load CDN for CKEditor 5 (Super build for SourceEditing) -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/super-build/ckeditor.js"></script>
 
     <div class="max-w-5xl" x-data="postForm()">
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -41,7 +41,7 @@
                     <!-- Thumbnail for Album Board -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700">대표 썸네일 <span class="text-gray-400 text-xs font-normal ml-1">(선택)</span></label>
-                        <div class="mt-1 text-sm text-gray-500">썸네일 사이즈 : 720 x 800
+                        <div class="mt-1 text-sm text-gray-500">썸네일 사이즈 : 720 x 800</div>
                         <div class="mt-2 flex items-center space-x-4">
                             <div class="flex-shrink-0 h-32 w-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center overflow-hidden bg-gray-50 relative">
                                 <template x-if="form.thumbnail">
@@ -104,7 +104,7 @@
                     <!-- Tag -->
                     <div>
                         <label for="youtube_tag" class="block text-sm font-medium text-gray-700">태그</label>
-                        <input type="text" id="youtube_tag" x-model="form.youtube_tag" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="예) #태그1,#태그2,#태그3,...">
+                        <input type="text" id="youtube_tag" x-model="form.youtube_tag" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="예) #태그1 #태그2 #태그3 ...">
                     </div>
                     @endif
 
@@ -219,8 +219,20 @@
 
                     // Initialize CKEditor
                     if (document.querySelector('#editor')) {
-                        ClassicEditor
+                        CKEDITOR.ClassicEditor
                             .create(document.querySelector('#editor'), {
+                                removePlugins: [
+                                    'CKBox', 'CKFinder', 'EasyImage', 'RealTimeCollaborativeComments', 'RealTimeCollaborativeTrackChanges', 'RealTimeCollaborativeRevisionHistory', 'PresenceList', 'Comments', 'TrackChanges', 'TrackChangesData', 'RevisionHistory', 'Pagination', 'WProofreader', 'MathType', 'SlashCommand', 'Template', 'DocumentOutline', 'FormatPainter', 'TableOfContents', 'PasteFromOfficeEnhanced', 'CaseChange'
+                                ],
+                                toolbar: {
+                                    items: [
+                                        'heading', '|',
+                                        'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+                                        'outdent', 'indent', '|',
+                                        'imageUpload', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo', '|',
+                                        'sourceEditing'
+                                    ]
+                                },
                                 extraPlugins: [MyCustomUploadAdapterPlugin],
                             })
                             .then(editor => {
