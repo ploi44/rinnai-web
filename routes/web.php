@@ -45,7 +45,7 @@ Route::prefix("career")->group(function() {
     Route::view("introduce", "front.career.introduce")->name("front.career.introduce");
     Route::view("interview", "front.career.interview")->name("front.career.interview");
     Route::get("interview/{slug}", function($slug) {
-        return view("front.career.interview.".$slug);
+        return view("front.career.interview.".$slug, compact('slug'));
     })->name("front.career.interview.detail");
 });
 
