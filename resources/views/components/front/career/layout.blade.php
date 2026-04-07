@@ -8,6 +8,7 @@
     <script src="/assets/career/js/jquery-latest.js"></script>
     <script src="/assets/career/js/swiper.min.js"></script>
     <script src="/assets/career/js/swiper-bundle.min.js?v=043"></script>
+    <link rel="icon" href="/assets/images/favicon.ico">
     <title>Rinnai career</title>
 </head>
 <body>
