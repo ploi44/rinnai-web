@@ -679,7 +679,7 @@ header#rinnaiGlobalHeader .rinnaiglobalHeader_search_button .icon-search {
 		right: 50%;
 		width: 100vw;
 		max-height: none;
-		transform: translateX(155px);
+		transform: translateX(101px);
 		border: 0;
 		border-top: 1px solid var(--Rinnai-Gray-3);
 	}
