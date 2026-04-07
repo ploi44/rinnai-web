@@ -1679,115 +1679,63 @@
         </div>
         <!---->
     </div>
-    </div>
-    <div class="cr_sub_top_bar">
-        <div class="bar_menu mNametab-1 current">
-            <ul>
-                <li onclick="fnMove('t1_1')">대리점 영업관리</li>
-                <li onclick="fnMove('t1_2')">서비스 관리</li>
-                <li onclick="fnMove('t1_3')">온라인 영업</li>
-                <li onclick="fnMove('t1_4')">특판 영업</li>
-                <li onclick="fnMove('t1_5')">시스템 영업</li>
-            </ul>
-        </div>
-        <div class="bar_menu mNametab-2">
-            <ul>
-                <li onclick="fnMove('t2_1')">생산관리</li>
-                <li onclick="fnMove('t2_2')">물류관리</li>
-                <li onclick="fnMove('t2_3')">노무관리</li>
-                <li onclick="fnMove('t2_4')">환경/안전관리</li>
-                <li onclick="fnMove('t2_5')">제품기술</li>
-                <li onclick="fnMove('t2_6')">구매</li>
-                <li onclick="fnMove('t2_7')">생산기술</li>
-                <li onclick="fnMove('t2_8')">금형 설계</li>
-                <li onclick="fnMove('t2_9')">품질경영</li>
-                <li onclick="fnMove('t2_10')">품질보증 - 제품 인증 및 평가</li>
-            </ul>
-        </div>
-        <div class="bar_menu mNametab-3">
-            <ul>
-                <li onclick="fnMove('t3_1')">IP(Intellectual Property)</li>
-                <li onclick="fnMove('t3_2')">기구설계</li>
-                <li onclick="fnMove('t3_3')">연구개발-연소/요소기술</li>
-                <li onclick="fnMove('t3_4')">S/W설계(MCU S/W)</li>
-                <li onclick="fnMove('t3_5')">IoT 시스템 개발</li>
-                <li onclick="fnMove('t3_6')">전자회로 설계(H/W)</li>
-                <li onclick="fnMove('t3_7')">전자제어설계</li>
-            </ul>
-        </div>
-        <div class="bar_menu mNametab-4">
-            <ul>
-                <li onclick="fnMove('t4_1')">경영기획</li>
-                <li onclick="fnMove('t4_2')">인사</li>
-                <li onclick="fnMove('t4_3')">총무</li>
-                <li onclick="fnMove('t4_4')">법무</li>
-                <li onclick="fnMove('t4_5')">재경</li>
-                <li onclick="fnMove('t4_6')">정보기술 (Information Technology)</li>
-                <li onclick="fnMove('t4_7')">상품기획</li>
-                <li onclick="fnMove('t4_8')">디자인(제품)</li>
-                <li onclick="fnMove('t4_9')">언론홍보</li>
-                <li onclick="fnMove('t4_10')">광고</li>
-                <li onclick="fnMove('t4_11')">디자인(광고/홍보)</li>
-                <li onclick="fnMove('t4_12')">해외사업</li>
-            </ul>
-        </div>
 
-        <script>
+    <script>
 
-            $('.tab_area').children().find('li').click(function() {
-                var tab_id = $(this).attr('data-tab');
+        $('.tab_area').children().find('li').click(function() {
+            var tab_id = $(this).attr('data-tab');
 
-                $(this).parent().children('li').removeClass('current');
-                $("#" + tab_id).parent().children('.tab-content').removeClass('current');
-                $(".bar_menu").removeClass('current');
+            $(this).parent().children('li').removeClass('current');
+            $("#" + tab_id).parent().children('.tab-content').removeClass('current');
+            $(".bar_menu").removeClass('current');
 
-                $(this).addClass('current');
-                $("#" + tab_id).addClass('current');
-                $(".mName" + tab_id).addClass('current');
-            });
+            $(this).addClass('current');
+            $("#" + tab_id).addClass('current');
+            $(".mName" + tab_id).addClass('current');
+        });
 
-        </script>
+    </script>
 
-        <script>
+    <script>
 
-            $(document).ready(function() {
+        $(document).ready(function() {
 
-                function scroll_style() {
-                    var window_top = $(window).scrollTop();
-                    var window_bottom = $(window).scrollTop() + $(window).height();
-                    var div_top = $('.top_cr_tab_cate').offset().top - 50;
-                    // var div_bottom = $('#footer').offset().top + 100;
+            function scroll_style() {
+                var window_top = $(window).scrollTop();
+                var window_bottom = $(window).scrollTop() + $(window).height();
+                var div_top = $('.top_cr_tab_cate').offset().top - 50;
+                // var div_bottom = $('#footer').offset().top + 100;
 
-                    //main
-                    if (window_top > div_top){
-                        $('.cr_sub_top_bar').addClass('onNav');
-                    }
-                    if (window_top < div_top){
-                        $('.cr_sub_top_bar').removeClass('onNav');
-                    }
-                    // if (window_bottom > div_bottom){
-                    //     $('.cr_sub_top_bar').removeClass('onNav');
-                    // }
-
+                //main
+                if (window_top > div_top){
+                    $('.cr_sub_top_bar').addClass('onNav');
                 }
+                if (window_top < div_top){
+                    $('.cr_sub_top_bar').removeClass('onNav');
+                }
+                // if (window_bottom > div_bottom){
+                //     $('.cr_sub_top_bar').removeClass('onNav');
+                // }
 
-                $(function() {
-                    $(window).scroll(scroll_style);
-                    scroll_style();
-                });
+            }
 
+            $(function() {
+                $(window).scroll(scroll_style);
+                scroll_style();
             });
 
-            /*영역이동*/
-            function fnMove(seq){
-                var offset = $("#cainfo_" + seq).offset();
-                $('html, body').animate({scrollTop : offset.top - 50 }, 400);
-            }
+        });
 
-            function fnPageMove(pm){
-                var offset = $("#CollaB" + pm).offset();
-                $('html, body').animate({scrollTop : offset.top - 50}, 400);
-            }
+        /*영역이동*/
+        function fnMove(seq){
+            var offset = $("#cainfo_" + seq).offset();
+            $('html, body').animate({scrollTop : offset.top - 50 }, 400);
+        }
 
-        </script>
+        function fnPageMove(pm){
+            var offset = $("#CollaB" + pm).offset();
+            $('html, body').animate({scrollTop : offset.top - 50}, 400);
+        }
+
+    </script>
 </x-front.career.layout>
