@@ -169,7 +169,7 @@
                                             <p class="border-red">채용안내</p>
                                             <ul class="dropDownMenu_secondary_list">
                                                 <li class="dropDownMenu_secondary_list_item">
-                                                    <a href="/career/career.html" target="_blank">
+                                                    <a href="/career/career" target="_blank">
                                                         <span class="cmn-icon icon-arrow -r"></span>채용사이트로 이동
                                                         <span class="cmn-icon icon-svg icon-external" aria-label="Open an external link" style="vertical-align: bottom;"></span>
                                                     </a>

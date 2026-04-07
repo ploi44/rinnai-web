@@ -40,6 +40,15 @@ Route::prefix("board")->group(function() {
     Route::get("{board_id}/{post_id}", "App\Http\Controllers\Front\Board\BoardController@view");
 });
 
+Route::prefix("career")->group(function() {
+    Route::view("career", "front.career.career")->name("front.career.career");
+    Route::view("introduce", "front.career.introduce")->name("front.career.introduce");
+    Route::view("interview", "front.career.interview")->name("front.career.interview");
+    Route::get("interview/{slug}", function($slug) {
+        return view("front.career.interview.".$slug);
+    })->name("front.career.interview.detail");
+});
+
 // Admin UI Routes
 Route::prefix('admin')->group(function () {
     Route::get('login', function () {
