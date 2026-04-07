@@ -3,7 +3,7 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="icon" href="/favicon.ico">
+<link rel="icon" href="/assets/images//favicon.ico">
 <title>{{ $title }}</title>
 <!-- resources -->
 <link rel="stylesheet" href="../assets/css/vendor/scroll-hint.css" media="all">

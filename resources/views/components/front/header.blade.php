@@ -28,7 +28,7 @@
                                 </a>
                                 <nav class="rinnaiGlobalHeader_navi_language">
                                     <div class="rinnaiGlobalHeader_navi_language_inner">
-                                        <div class="rinnaiGlobalHeader_navi_language_item">
+                                        <div class="rinnaiGlobalHeader_navi_language_item" style="display: none;">
                                             <p class="border-red">Language</p>
                                             <ul class="rinnaiGlobalHeader_resion_list">
                                                 <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Language 1</a></li>
@@ -37,53 +37,55 @@
                                         </div>
                                         <div class="rinnaiGlobalHeader_navi_language_item">
                                             <p class="border-red">Region</p>
-                                            <a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Global<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a>
+                                            <a href="https://www.rinnai.com/en" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Global<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a>
                                             <div class="rinnaiGlobalHeader_navi_language_secondary">
                                                 <p class="border-gray">East Asia</p>
                                                 <ul class="rinnaiGlobalHeader_resion_list">
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Japan<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Korea<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Shanghai<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Guagzhou<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Taiwan<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Hong kong<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai.co.jp/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Japan<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai.co.kr/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Korea<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <!-- <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Shanghai<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li> -->
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="http://www.gzrinnai.com.cn/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Guagzhou<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai.tw" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Taiwan<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <!-- <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Hong kong<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li> -->
                                                 </ul>
                                             </div>
                                             <div class="rinnaiGlobalHeader_navi_language_secondary">
                                                 <p class="border-gray">Southeast Asia</p>
                                                 <ul class="rinnaiGlobalHeader_resion_list">
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Vietnam<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Thailand<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Singapore<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Malaysia<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Indonesia<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://rinnai.com.vn" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Vietnam<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnaithailand.com/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Thailand<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <!-- <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Singapore<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li> -->
+                                                    <!-- <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Malaysia<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li> -->
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai.co.id/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Indonesia<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
                                                 </ul>
                                             </div>
                                             <div class="rinnaiGlobalHeader_navi_language_secondary">
                                                 <p class="border-gray">Oceania</p>
                                                 <ul class="rinnaiGlobalHeader_resion_list">
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Australia<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>New Zeeland<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <!-- <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Australia<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li> -->
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://rinnai.co.nz/corporate" target="_blank"><span class="cmn-icon icon-arrow -r"></span>New Zeeland<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
                                                 </ul>
                                             </div>
                                             <div class="rinnaiGlobalHeader_navi_language_secondary">
                                                 <p class="border-gray">Europe</p>
                                                 <ul class="rinnaiGlobalHeader_resion_list">
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>United Kingdom<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Italy<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai-uk.co.uk/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>United Kingdom<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://rinnai.it/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Italy<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
                                                 </ul>
                                             </div>
                                             <div class="rinnaiGlobalHeader_navi_language_secondary">
                                                 <p class="border-gray">South America</p>
                                                 <ul class="rinnaiGlobalHeader_resion_list">
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Brasil<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai.com.br" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Brasil<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://rinnai.mx/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Mexico<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://rinnai.cr/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Costa Rica<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
                                                 </ul>
                                             </div>
                                             <div class="rinnaiGlobalHeader_navi_language_secondary">
                                                 <p class="border-gray">North America</p>
                                                 <ul class="rinnaiGlobalHeader_resion_list">
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>United States<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Canada<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai.us/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>United States<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <!-- <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Canada<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li> -->
                                                 </ul>
                                             </div>
                                         </div>
@@ -167,7 +169,7 @@
                                             <p class="border-red">채용안내</p>
                                             <ul class="dropDownMenu_secondary_list">
                                                 <li class="dropDownMenu_secondary_list_item">
-                                                    <a href="#" target="_blank">
+                                                    <a href="/career/career.html" target="_blank">
                                                         <span class="cmn-icon icon-arrow -r"></span>채용사이트로 이동
                                                         <span class="cmn-icon icon-svg icon-external" aria-label="Open an external link" style="vertical-align: bottom;"></span>
                                                     </a>
@@ -257,7 +259,7 @@
 
                             <nav class="rinnaiGlobalHeader_navi_language">
                                 <div class="rinnaiGlobalHeader_navi_language_inner">
-                                    <div class="rinnaiGlobalHeader_navi_language_item">
+                                    <div class="rinnaiGlobalHeader_navi_language_item" style="display:none;">
                                         <p class="border-red">Language</p>
                                         <ul class="rinnaiGlobalHeader_resion_list">
                                             <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Language 1</a></li>
@@ -266,53 +268,55 @@
                                     </div>
                                     <div class="rinnaiGlobalHeader_navi_language_item">
                                         <p class="border-red">Region</p>
-                                        <a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Global<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a>
+                                        <a href="https://www.rinnai.com/en" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Global<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a>
                                         <div class="rinnaiGlobalHeader_navi_language_secondary">
                                             <p class="border-gray">East Asia</p>
                                             <ul class="rinnaiGlobalHeader_resion_list">
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Japan<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Korea<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Shanghai<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Guagzhou<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Taiwan<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Hong kong<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai.co.jp/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Japan<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai.co.kr/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Korea<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <!-- <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Shanghai<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li> -->
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="http://www.gzrinnai.com.cn/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Guagzhou<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai.tw" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Taiwan<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <!-- <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Hong kong<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li> -->
                                             </ul>
                                         </div>
                                         <div class="rinnaiGlobalHeader_navi_language_secondary">
                                             <p class="border-gray">Southeast Asia</p>
                                             <ul class="rinnaiGlobalHeader_resion_list">
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Vietnam<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Thailand<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Singapore<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Malaysia<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Indonesia<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://rinnai.com.vn" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Vietnam<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnaithailand.com/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Thailand<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <!-- <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Singapore<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li> -->
+                                                <!-- <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Malaysia<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li> -->
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai.co.id/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Indonesia<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
                                             </ul>
                                         </div>
                                         <div class="rinnaiGlobalHeader_navi_language_secondary">
                                             <p class="border-gray">Oceania</p>
                                             <ul class="rinnaiGlobalHeader_resion_list">
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Australia<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>New Zeeland<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <!-- <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Australia<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li> -->
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://rinnai.co.nz/corporate" target="_blank"><span class="cmn-icon icon-arrow -r"></span>New Zeeland<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
                                             </ul>
                                         </div>
                                         <div class="rinnaiGlobalHeader_navi_language_secondary">
                                             <p class="border-gray">Europe</p>
                                             <ul class="rinnaiGlobalHeader_resion_list">
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>United Kingdom<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Italy<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai-uk.co.uk/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>United Kingdom<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://rinnai.it/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Italy<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
                                             </ul>
                                         </div>
                                         <div class="rinnaiGlobalHeader_navi_language_secondary">
                                             <p class="border-gray">South America</p>
                                             <ul class="rinnaiGlobalHeader_resion_list">
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Brasil<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai.com.br" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Brasil<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://rinnai.mx/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Mexico<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://rinnai.cr/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Costa Rica<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
                                             </ul>
                                         </div>
                                         <div class="rinnaiGlobalHeader_navi_language_secondary">
                                             <p class="border-gray">North America</p>
                                             <ul class="rinnaiGlobalHeader_resion_list">
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>United States<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
-                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Canada<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                <li class="rinnaiGlobalHeader_resion_list_item"><a href="https://www.rinnai.us/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>United States<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li>
+                                                    <!-- <li class="rinnaiGlobalHeader_resion_list_item"><a href="" target="_blank"><span class="cmn-icon icon-arrow -r"></span>Canada<span class="cmn-icon icon-svg icon-external" aria-label="Open an external link"></span></a></li> -->
                                             </ul>
                                         </div>
                                     </div>

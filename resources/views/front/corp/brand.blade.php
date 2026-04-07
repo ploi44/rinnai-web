@@ -1,7 +1,7 @@
 <x-front.layout>
     <x-slot:head>
         <x-front.head-sub>
-            <x-slot:title>Brand | About Us | Rinnai Corporation</x-slot:title>
+            <x-slot:title>Rinnai</x-slot:title>
         </x-front.head-sub>
     </x-slot:head>
 
@@ -14,7 +14,7 @@
         <article id="brand">
             <section class="sec01">
                 <h1 class="bar-gray">브랜드 아이덴티티</h1>
-                <div class="inner">
+                <div class="inner" style="display:none;">
                     <video controls muted preload="none" playsinline controlsList="nodownload" playsinline src="/assets/media/corp/movie/chapter1.mp4" poster="/assets/images/corp/brand/img_brand_chapter01.jpg" width="100%"></video>
                 </div>
             </section>

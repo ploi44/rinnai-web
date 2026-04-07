@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                             </figure>
-                            <p><span class="cmn-icon icon-arrow -r"></span><span class="col_bot_txt_b">{{ $post->title }}</span></p>
+                            <p class="yt_ht_set"><span class="cmn-icon icon-arrow -r"></span><span class="col_bot_txt_b">{{ $post->title }}</span></p>
                             <p class="title col_bot_txt">{{ $post->attachments["youtube_tag"] }}</p>
                         </a>
                     </li>
