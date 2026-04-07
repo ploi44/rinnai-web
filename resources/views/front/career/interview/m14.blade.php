@@ -19,7 +19,7 @@
                 <div class="text_area_2">
                     <div class="t_qus">해당직무를 수행하기 위해서는 어떤 준비를 해야할까요?</div>
                     <div class="t_ans">
-                        경영기획부는 사내의 여러 부서들과 소통해야 하기 때문에, 의견 조율하고 경청하는 자세가 가장 중요합니다. 또한 경영전략 및 계획을 수립·관리하는 업무를 수행하고 있어, 경영 지식 및 기본적인 재무회계 분석 능력이 있다면 업무에 큰 도움이 될 것이라 생각됩니다.
+                        경영기획부는 사내의 여러 부서들과 소통해야 하기 때문에, 의견을 조율하고 경청하는 자세가 가장 중요합니다. 또한 경영전략 및 계획을 수립·관리하는 업무를 수행하고 있어, 경영 지식 및 기본적인 재무회계 분석 능력이 있다면 업무에 큰 도움이 될 것이라 생각됩니다.
                         부서 내 공동으로 진행하는 프로젝트가 많아 원격 오피스 툴을 잘 다루어야 하고, 대부분의 업무가 분석적이고 전략적인 사고를 필요로 하기 때문에 숫자에 대한 정보 감각도 필수적입니다. 또한 창의적인 업무 처리를 위한 수치에 대한 분석 능력과 신속한 판단력이 요구됩니다.
 					</div>
                 </div>
@@ -46,18 +46,4 @@
                 </div>
             </div>
         </div>
-<script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 3,
-            spaceBetween: 30,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-    </script>
 </x-front.career.layout>
