@@ -82,7 +82,7 @@
                         @foreach($posts as $post)
                         <li class="l-col-3 l-col-tb-6 l-col-sm-12">
                             <a href="/board/{{ $post->board->slug }}/{{ $post->id }}" target="_blank">
-                                <figure><img src="{{ $post->thumbnail }}" alt="린나이소식">
+                                <figure class="rn_th_img"><img src="{{ $post->thumbnail }}" alt="린나이소식">
                                 </figure>
                                 <p><span class="cmn-icon icon-arrow -r"></span><span class="lt_text">{{ $post->title }}</span></p>
                                 <!-- <p><span class="cmn-icon icon-arrow -r"></span><time datetime="Year-Month-Date">Month Date, Year</time><span class="category"><em>Category</em></span></p> -->
