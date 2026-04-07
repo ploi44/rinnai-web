@@ -19,7 +19,7 @@
                 <div class="text_area_2">
                     <div class="t_qus">해당직무를 수행하기 위해서는 어떤 준비를 해야할까요?</div>
                     <div class="t_ans">
-                        생산기술직무를 설명하기 위해서 제가 근무하는 팀의 운영방식을 먼저 말씀 드려보겠습니다. 생산기술팀은 자동화기계와 전자전기 제어 두 분야로 나뉘어 운영되고 있습니다. 우선 첫번째로 Soft 스킬은 기술 외적인 역량으로 기계에 대한 적극적인 관심, 소통능력, 문제해결을 위한 끈기와 노력이 필요하다고 생각합니다.
+                        생산기술직무를 설명하기 위해서 제가 근무하는 팀의 운영방식을 먼저 말씀 드려보겠습니다. 생산기술팀은 자동화기계와 전자전기 제어 두 분야로 나뉘어 운영되고 단. 우선 첫번째로 Soft 스킬은 기술 외적인 역량으로 기계에 대한 적극적인 관심, 소통능력, 문제해결을 위한 끈기와 노력이 필요하다고 생각합니다.
                         둘째, 기술적 스킬은 엔지니어가 갖춰야 할 역량으로 도면 이해, 기초역학, 가공기술, 일반 전기기술, 여러 물성치의 개념 및 상관관계 이해 등 전문적 지식이 필요합니다. 또한 3D CAD TOOL, PLC PROGRAM, ROBOT CONTROL 등 관련 PROGRAM을 다루는데 본인의 적성과 흥미에 맞아야 된다고 생각합니다.
 					</div>
                 </div>
@@ -46,4 +46,18 @@
                 </div>
             </div>
         </div>
+<script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
 </x-front.career.layout>
