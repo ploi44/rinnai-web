@@ -20,6 +20,9 @@ Route::get('/', function () {
     return view('front.main', compact('mainSlides', 'notices', 'posts', 'popups'));
 });
 
+Route::view("private", "front.private")->name("front.private");
+Route::view("policy", "front.policy")->name("front.policy");
+
 // 기업개요
 Route::prefix("corp")->group(function() {
     Route::view("idea", "front.corp.idea")->name("front.corp.idea");

@@ -15,8 +15,8 @@
         </div>
         <div class="corp-info">
             <ul>
-                <li><a class="link_item" href="../tnc/policy.php"><span class="cmn-icon icon-arrow -r"></span>사이트 이용약관</a></li>
-                <li><a class="link_item" href="../tnc/private.php"><span class="cmn-icon icon-arrow -r"></span>개인정보처리방침</a></li>
+                <li><a class="link_item" href="/policy"><span class="cmn-icon icon-arrow -r"></span>사이트 이용약관</a></li>
+                <li><a class="link_item" href="/private"><span class="cmn-icon icon-arrow -r"></span>개인정보처리방침</a></li>
                 <li><a class="link_item" href="https://agency.rinnai.co.kr/" target="_blank"><span class="cmn-icon icon-arrow -r"></span>대리점 찾기</a></li>
                 <li><a class="link_item" href="https://ebook.rinnai.co.kr/include/catalistc.asp?Dir=0100000000&cimg=" target="_blank"><span class="cmn-icon icon-arrow -r"></span>e-카탈로그</a></li>
             </ul>
