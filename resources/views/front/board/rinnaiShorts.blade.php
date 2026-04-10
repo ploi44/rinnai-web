@@ -1,8 +1,6 @@
 <x-front.layout>
     <x-slot:head>
-        <x-front.head-sub>
-            <x-slot:title>{{ setting("site_name", "Rinnai") }}</x-slot:title>
-        </x-front.head-sub>
+        <x-front.head-sub />
     </x-slot:head>
 
     <main id="mainContent">
