@@ -1,7 +1,7 @@
 <x-front.layout>
     <x-slot:head>
         <x-front.head-sub>
-            <x-slot:title>Corporate Philosophy | About Us | Rinnai Corporation</x-slot:title>
+            <x-slot:title>Rinnai</x-slot:title>
         </x-front.head-sub>
     </x-slot:head>
 
